@@ -1,62 +1,51 @@
-import { ShieldCheck, Clock, Award, ThumbsUp } from "lucide-react";
+import { ShieldCheck, CalendarCheck, Sparkles } from "lucide-react";
 
-const reasons = [
+const pillars = [
+  {
+    icon: Sparkles,
+    title: "Comodidade",
+    description: "Nós cuidamos de tudo. Dos produtos de limpeza ao treinamento, você não precisa se preocupar com nenhum detalhe."
+  },
+  {
+    icon: CalendarCheck,
+    title: "Praticidade",
+    description: "Agendamento rápido e fácil. Escolha a data, o horário e o serviço que melhor atende à sua rotina."
+  },
   {
     icon: ShieldCheck,
-    title: "Profissionais Verificadas",
-    description:
-      "Todas as nossas diaristas passam por rigoroso processo de seleção, com verificação de antecedentes e referências.",
-  },
-  {
-    icon: Clock,
-    title: "Pontualidade Garantida",
-    description:
-      "Respeitamos o seu tempo. Nossas profissionais chegam sempre no horário combinado, sem atrasos.",
-  },
-  {
-    icon: Award,
-    title: "Serviço de Alta Qualidade",
-    description:
-      "Utilizamos produtos de primeira linha e técnicas eficientes para garantir o mais alto padrão de limpeza.",
-  },
-  {
-    icon: ThumbsUp,
-    title: "Satisfação 100% Garantida",
-    description:
-      "Ficou insatisfeito? Retornamos para refazer o serviço sem custo adicional. Sua satisfação é nossa prioridade.",
-  },
+    title: "Segurança",
+    description: "Profissionais rigorosamente selecionadas, com checagem de antecedentes e referências confirmadas."
+  }
 ];
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-20 bg-primary/5">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-14">
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground mb-4">
+    <section className="py-24 bg-white">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <div className="text-center mb-16">
+          <span className="text-yellow-500 font-bold tracking-wider text-sm uppercase mb-3 block">Nossos Pilares</span>
+          <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-slate-900 mb-6 relative inline-block">
             Por que escolher a Guio Clean?
           </h2>
-          <p className="font-body text-muted-foreground text-lg max-w-xl mx-auto">
-            Mais do que limpeza — entregamos confiança, qualidade e tranquilidade para a sua rotina.
+          <p className="font-body text-slate-600 text-lg max-w-2xl mx-auto">
+            Garantimos uma experiência livre de estresse. Entregamos muito mais do que limpeza: entregamos qualidade de vida.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {reasons.map((reason, index) => {
-            const Icon = reason.icon;
+        <div className="grid md:grid-cols-3 gap-8">
+          {pillars.map((pillar, idx) => {
+            const Icon = pillar.icon;
             return (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-6 flex flex-col items-start gap-4 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              <div 
+                key={idx} 
+                className="bg-slate-50 border border-slate-100 rounded-3xl p-10 flex flex-col items-center text-center group hover:bg-white hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-2"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Icon className="w-6 h-6 text-primary" />
+                <div className="w-20 h-20 rounded-2xl bg-slate-900 flex items-center justify-center mb-8 relative group-hover:scale-110 transition-transform duration-300">
+                  <div className="absolute -inset-2 bg-yellow-400 rounded-2xl opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300" />
+                  <Icon className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="font-heading font-bold text-lg text-foreground">
-                  {reason.title}
-                </h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  {reason.description}
-                </p>
+                <h3 className="font-heading font-bold text-xl text-slate-900 mb-4">{pillar.title}</h3>
+                <p className="font-body text-slate-600 leading-relaxed">{pillar.description}</p>
               </div>
             );
           })}
