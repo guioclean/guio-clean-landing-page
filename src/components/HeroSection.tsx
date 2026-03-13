@@ -48,28 +48,29 @@ const HeroSection = () => {
           </div>
 
           {/* Image Block */}
-          <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[480px] lg:ml-auto mt-12 lg:mt-0 p-4 sm:p-8 flex justify-center items-center">
+          <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[460px] lg:ml-auto mt-12 lg:mt-0 p-8">
+            {/* Background Shape */}
+            <div className="absolute inset-0 bg-yellow-400 rounded-[4rem] transform rotate-12 scale-100 shadow-[0_0_40px_rgba(250,204,21,0.3)] transition-transform duration-700 hover:rotate-[15deg]" />
             
-            {/* Background Pills (Reference Style) */}
-            <div className="absolute z-0 transform -rotate-[35deg] w-[150%] h-[150%] flex flex-col gap-6 items-center justify-center opacity-70 pointer-events-none">
-              <div className="w-[85%] h-24 bg-purple-400/30 rounded-[3rem] translate-x-8" />
-              <div className="w-[100%] h-24 bg-purple-300/30 rounded-[3rem] -translate-x-4" />
-              
-              {/* A circle/dot attached to the top right of the pills */}
-              <div className="absolute right-[5%] top-[45%] w-24 h-24 bg-purple-300/40 rounded-full blur-sm" />
+            {/* Image Wrapper */}
+            <div className="relative aspect-square lg:aspect-[4/5] rounded-[4rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.4)] transform -rotate-3 transition-transform duration-700 hover:-rotate-1 border-4 border-white/20">
+              <div className="absolute inset-0 bg-slate-200 animate-pulse" /> {/* Placeholder while loading */}
+              <img
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80"
+                alt="Profissional de limpeza"
+                className="relative w-full h-full object-cover transition-transform duration-1000 origin-center hover:scale-110 z-10"
+                loading="eager"
+              />
             </div>
             
-            {/* Image  */}
-            <div className="relative z-10 w-full hover:-translate-y-2 transition-transform duration-700 mt-4 sm:mt-0">
-               {/* Usando uma silhueta de recorte/transparente ou imagem de alta qualidade com bordas mais integradas */}
-              <div className="w-full h-auto aspect-[4/5] sm:aspect-square overflow-hidden rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-4 border-white/10 relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
-                    alt="Profissional de limpeza uniformizada sorrindo"
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Gradiente leve embaixo da imagem para não cortar tao seco */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#5a38b5]/40 to-transparent mix-blend-multiply pointer-events-none" />
+            {/* Floating Badge */}
+            <div className="absolute -bottom-6 -left-2 md:-left-8 bg-white p-5 rounded-3xl shadow-xl flex items-center gap-4 animate-fade-in z-20 border border-slate-100">
+              <div className="w-14 h-14 bg-yellow-100/80 rounded-full flex items-center justify-center">
+                <span className="text-2xl">✨</span>
+              </div>
+              <div>
+                <p className="font-heading font-extrabold text-[#5a38b5] text-xl">+5.000</p>
+                <p className="font-body text-sm text-slate-500 leading-tight">Serviços <br/>realizados</p>
               </div>
             </div>
           </div>
