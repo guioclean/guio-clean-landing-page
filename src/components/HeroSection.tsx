@@ -50,10 +50,10 @@ const HeroSection = () => {
           {/* Image Block */}
           <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[460px] lg:ml-auto mt-12 lg:mt-0 p-8">
             {/* Background Shape */}
-            <div className="absolute inset-0 bg-yellow-400 rounded-[4rem] transform rotate-12 scale-100 shadow-[0_0_40px_rgba(250,204,21,0.3)] transition-transform duration-700 hover:rotate-[15deg]" />
+            <div className="absolute inset-0 bg-white rounded-[4rem] transform rotate-12 scale-100 shadow-[0_0_40px_rgba(255,255,255,0.2)] transition-transform duration-700 hover:rotate-[15deg]" />
             
             {/* Image Wrapper */}
-            <div className="relative aspect-square lg:aspect-[4/5] rounded-[4rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.4)] transform -rotate-3 transition-transform duration-700 hover:-rotate-1 border-4 border-white/20">
+            <div className="relative aspect-square lg:aspect-[4/5] rounded-[4rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.4)] transform -rotate-3 transition-transform duration-700 hover:-rotate-1 border-[6px] border-[#5a38b5]/20">
               <div className="absolute inset-0 bg-slate-200 animate-pulse" /> {/* Placeholder while loading */}
               <img
                 src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80"

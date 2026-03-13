@@ -37,41 +37,43 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 mt-12">
           {services.map((service, idx) => (
             <div 
               key={idx}
-              className="group relative h-[420px] rounded-[3rem] overflow-hidden shadow-lg hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:-translate-y-2 transition-all duration-500 cursor-pointer border-4 border-slate-50"
+              className="group bg-white rounded-[2.5rem] p-6 lg:p-8 shadow-xl hover:shadow-[0_20px_40px_rgba(90,56,181,0.15)] hover:-translate-y-3 transition-all duration-500 cursor-pointer flex flex-col items-center text-center border-b-4 border-transparent hover:border-[#b89cff]"
             >
-              {/* Fallback pattern like the hero's pill wrapper */}
-              <div className="absolute inset-0 bg-[#5a38b5] rounded-[3rem] transform transition-transform duration-700 opacity-0 group-hover:opacity-100 group-hover:rotate-3 scale-105 z-0" />
-              
-              <div className="relative w-full h-full rounded-[3rem] overflow-hidden bg-slate-100 z-10 transition-transform duration-700 bg-white">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${service.bgImage})` }}
-                />
+              {/* Formato da Imagem no Topo */}
+              <div className="relative w-48 h-48 mx-auto mb-8 mt-4">
+                {/* Fundo girado */}
+                <div className={`absolute inset-0 bg-[#f4f1ff] rounded-[2.5rem] transform ${idx % 2 === 0 ? 'rotate-12' : '-rotate-12'} scale-105 group-hover:rotate-0 transition-transform duration-500 shadow-inner`} />
+                <div className={`absolute inset-0 bg-[#e7deff] rounded-[2.5rem] transform ${idx % 2 === 0 ? '-rotate-6' : 'rotate-6'} scale-100 group-hover:rotate-0  transition-transform duration-700`} />
                 
-                {/* Gradient overlay for text */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
-                
-                <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
-                  <h3 className="font-heading font-bold text-3xl text-white mb-4 transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="font-body text-white/90 leading-relaxed mb-6 block md:opacity-0 md:h-0 overflow-hidden group-hover:h-auto group-hover:opacity-100 transform md:translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                    {service.description}
-                  </p>
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-fit bg-[#b89cff] text-slate-900 font-heading font-bold px-8 py-3 rounded-xl block md:opacity-0 group-hover:opacity-100 transform md:translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-150 shadow-lg shadow-[#b89cff]/30 hover:bg-[#c9b3ff]"
-                  >
-                    Saiba Mais
-                  </a>
+                {/* Imagem */}
+                <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden shadow-lg border-4 border-white transform transition-transform duration-500 group-hover:scale-105">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
+                    style={{ backgroundImage: `url(${service.bgImage})` }}
+                  />
+                  <div className="absolute inset-0 bg-[#5a38b5]/10 group-hover:bg-transparent transition-colors duration-500" />
                 </div>
               </div>
+              
+              <h3 className="font-heading font-extrabold text-2xl text-slate-800 mb-4 group-hover:text-[#5a38b5] transition-colors duration-300">
+                {service.title}
+              </h3>
+              <p className="font-body text-slate-600 leading-relaxed text-[15px] mb-8 flex-grow">
+                {service.description}
+              </p>
+              
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full text-center bg-slate-50 text-[#5a38b5] font-heading font-bold px-6 py-4 rounded-xl border border-[#e7deff] group-hover:bg-[#b89cff] group-hover:text-slate-900 group-hover:border-transparent transition-all duration-300 transform"
+              >
+                Orçamento Rápido
+              </a>
             </div>
           ))}
         </div>
