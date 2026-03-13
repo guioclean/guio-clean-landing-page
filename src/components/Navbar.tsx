@@ -1,4 +1,5 @@
-import logo from "@/assets/guioclean-logo.png";
+import logoBranca from "@/assets/logo-branca.png";
+import logoColorida from "@/assets/logo-colorida.png";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
@@ -21,8 +22,8 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 transition-transform hover:scale-105">
-           {/* Adicionar um filtro de brilho/inversão na logo caso não tenha logo branca, se for PNG preto. No momento, como a logo não está visível no bg escuro, usaremos contrast/brightness. */}
-          <img src={logo} alt="Guio Clean" className={`h-16 md:h-20 lg:h-24 object-contain transition-all duration-300 ${!scrolled ? "brightness-0 invert opacity-100" : ""}`} />
+           {/* Usando as duas imagens nativamente em vez de filtros */}
+          <img src={!scrolled ? logoBranca : logoColorida} alt="Guio Clean" className="h-[4.5rem] md:h-[5.5rem] lg:h-24 object-contain transition-all duration-300 drop-shadow-sm" />
         </a>
         <div className={`hidden md:flex items-center gap-8 font-heading font-medium text-sm transition-colors duration-300 ${scrolled ? "text-slate-700" : "text-purple-100"}`}>
           <a href="#onde-atendemos" className={`transition-colors hover:-translate-y-0.5 duration-200 ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Onde Atendemos</a>

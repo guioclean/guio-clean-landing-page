@@ -34,7 +34,7 @@ const HeroSection = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-yellow-400 text-slate-900 font-heading font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-yellow-300 hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center justify-center bg-[#b89cff] text-slate-900 font-heading font-bold text-lg px-8 py-4 rounded-lg shadow-[0_10px_30px_rgba(184,156,255,0.3)] hover:bg-[#c9b3ff] hover:scale-105 transition-all duration-300"
               >
                 Agendar Limpeza
               </a>

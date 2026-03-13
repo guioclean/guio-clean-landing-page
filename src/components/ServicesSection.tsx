@@ -41,29 +41,36 @@ const ServicesSection = () => {
           {services.map((service, idx) => (
             <div 
               key={idx}
-              className="group relative h-[420px] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer"
+              className="group relative h-[420px] rounded-[3rem] overflow-hidden shadow-lg hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:-translate-y-2 transition-all duration-500 cursor-pointer border-4 border-slate-50"
             >
-              <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                style={{ backgroundImage: `url(${service.bgImage})` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+              {/* Fallback pattern like the hero's pill wrapper */}
+              <div className="absolute inset-0 bg-[#5a38b5] rounded-[3rem] transform transition-transform duration-700 opacity-0 group-hover:opacity-100 group-hover:rotate-3 scale-105 z-0" />
               
-              <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end">
-                <h3 className="font-heading font-bold text-3xl text-white mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  {service.title}
-                </h3>
-                <p className="font-body text-white/80 leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                  {service.description}
-                </p>
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-fit bg-primary text-white font-heading font-bold px-8 py-3 rounded-xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-150 shadow-lg shadow-primary/30 hover:brightness-110"
-                >
-                  Saiba Mais
-                </a>
+              <div className="relative w-full h-full rounded-[3rem] overflow-hidden bg-slate-100 z-10 transition-transform duration-700 bg-white">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${service.bgImage})` }}
+                />
+                
+                {/* Gradient overlay for text */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+                
+                <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
+                  <h3 className="font-heading font-bold text-3xl text-white mb-4 transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="font-body text-white/90 leading-relaxed mb-6 block md:opacity-0 md:h-0 overflow-hidden group-hover:h-auto group-hover:opacity-100 transform md:translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                    {service.description}
+                  </p>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-fit bg-[#b89cff] text-slate-900 font-heading font-bold px-8 py-3 rounded-xl block md:opacity-0 group-hover:opacity-100 transform md:translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-150 shadow-lg shadow-[#b89cff]/30 hover:bg-[#c9b3ff]"
+                  >
+                    Saiba Mais
+                  </a>
+                </div>
               </div>
             </div>
           ))}
