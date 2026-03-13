@@ -130,7 +130,7 @@ const ContactSection = () => {
             <div>
               <img src={logo} alt="Guio Clean" className="h-14 brightness-0 invert mb-6" />
               <p className="font-body text-slate-400 text-lg leading-relaxed max-w-md">
-                Experiência 2izy na limpeza do seu dia a dia. Compromisso com a segurança, praticidade e tranquilidade que você merece.
+                Experiência Guio Clean na limpeza do seu dia a dia. Compromisso com a segurança, praticidade e tranquilidade que você merece.
               </p>
             </div>
 

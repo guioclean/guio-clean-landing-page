@@ -68,25 +68,29 @@ const HeroSection = () => {
           </div>
 
           {/* Image Block */}
-          <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
-            {/* Soft background shadow for depth */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-[2.5rem] transform translate-x-4 translate-y-4" />
-            <div className="relative aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white">
+          <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[460px] lg:ml-auto mt-12 lg:mt-0 p-8">
+            {/* Background Shape */}
+            <div className="absolute inset-0 bg-primary rounded-[4rem] transform rotate-12 scale-100 shadow-xl transition-transform duration-700 hover:rotate-[15deg]" />
+            
+            {/* Image Wrapper */}
+            <div className="relative aspect-square lg:aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl transform -rotate-3 transition-transform duration-700 hover:-rotate-1">
+              <div className="absolute inset-0 bg-slate-200 animate-pulse" /> {/* Placeholder while loading */}
               <img
                 src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80"
-                alt="Profissional realizando limpeza em uma sala iluminada"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                alt="Profissional de limpeza"
+                className="relative w-full h-full object-cover transition-transform duration-1000 origin-center hover:scale-110 z-10"
                 loading="eager"
               />
-              {/* Floating Badge */}
-              <div className="absolute bottom-8 -left-8 md:left-8 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-fade-in">
-                <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                  <span className="text-2xl">✨</span>
-                </div>
-                <div>
-                  <p className="font-heading font-bold text-slate-900">+5.000</p>
-                  <p className="font-body text-sm text-slate-600">Terços limpos</p>
-                </div>
+            </div>
+            
+            {/* Floating Badge */}
+            <div className="absolute -bottom-6 -left-2 md:-left-8 bg-white p-5 rounded-3xl shadow-xl flex items-center gap-4 animate-fade-in z-20 border border-slate-100">
+              <div className="w-14 h-14 bg-yellow-100/80 rounded-full flex items-center justify-center">
+                <span className="text-2xl">✨</span>
+              </div>
+              <div>
+                <p className="font-heading font-extrabold text-slate-900 text-xl">+5.000</p>
+                <p className="font-body text-sm text-slate-500 leading-tight">Serviços <br/>realizados</p>
               </div>
             </div>
           </div>
