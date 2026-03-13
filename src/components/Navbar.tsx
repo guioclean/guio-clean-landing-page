@@ -16,26 +16,29 @@ const Navbar = () => {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 transition-transform hover:scale-105">
-          <img src={logo} alt="Guio Clean" className="h-10 md:h-12 object-contain" />
+           {/* Adicionar um filtro de brilho/inversão na logo caso não tenha logo branca, se for PNG preto. No momento, como a logo não está visível no bg escuro, usaremos contrast/brightness. */}
+          <img src={logo} alt="Guio Clean" className={`h-10 md:h-12 object-contain transition-all duration-300 ${!scrolled ? "brightness-0 invert opacity-90" : ""}`} />
         </a>
-        <div className="hidden md:flex items-center gap-8 font-heading font-medium text-sm text-slate-700">
-          <a href="#onde-atendemos" className="hover:text-primary transition-colors hover:-translate-y-0.5 duration-200">Onde Atendemos</a>
-          <a href="#servicos" className="hover:text-primary transition-colors hover:-translate-y-0.5 duration-200">Serviços</a>
-          <a href="#depoimentos" className="hover:text-primary transition-colors hover:-translate-y-0.5 duration-200">Depoimentos</a>
-          <a href="#contato" className="hover:text-primary transition-colors hover:-translate-y-0.5 duration-200">Contato</a>
+        <div className={`hidden md:flex items-center gap-8 font-heading font-medium text-sm transition-colors duration-300 ${scrolled ? "text-slate-700" : "text-purple-100"}`}>
+          <a href="#onde-atendemos" className={`transition-colors hover:-translate-y-0.5 duration-200 ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Onde Atendemos</a>
+          <a href="#servicos" className={`transition-colors hover:-translate-y-0.5 duration-200 ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Serviços</a>
+          <a href="#depoimentos" className={`transition-colors hover:-translate-y-0.5 duration-200 ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Depoimentos</a>
+          <a href="#contato" className={`transition-colors hover:-translate-y-0.5 duration-200 ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Contato</a>
         </div>
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-primary text-primary-foreground font-heading font-bold text-sm px-7 py-3 rounded-full shadow-lg shadow-primary/30 hover:shadow-xl hover:-translate-y-1 hover:brightness-110 transition-all duration-300"
+          className={`font-heading font-bold text-sm px-7 py-3 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 hover:scale-105 transition-all duration-300 ${
+            scrolled ? "bg-primary text-primary-foreground shadow-primary/30" : "bg-white text-[#5a38b5] hover:bg-slate-100"
+          }`}
         >
-          Solicitar Orçamento
+          {scrolled ? "Solicitar Orçamento" : "Orçamento Rápido"}
         </a>
       </div>
     </nav>
