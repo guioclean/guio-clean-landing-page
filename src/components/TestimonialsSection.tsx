@@ -50,12 +50,29 @@ const TestimonialsSection = () => {
             A satisfação de quem confiou em nosso trabalho é o combustível para buscarmos sempre a perfeição.
           </p>
         </div>
+        
+        {/* Placeholder widget do Google (Ex: Elfsight) */}
+        <div className="bg-slate-50 border-2 border-dashed border-slate-300 rounded-3xl p-10 mb-16 text-center shadow-inner">
+          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+            <svg className="w-8 h-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-1.81-.15-1.81z"/>
+            </svg>
+          </div>
+          <h3 className="font-heading font-bold text-slate-700 text-xl mb-2">Avaliações do Google Meu Negócio</h3>
+          <p className="font-body text-slate-500 max-w-lg mx-auto mb-6">
+            Podemos integrar suas avaliações reais do Google aqui! Basta conectar um widget como Elfsight ou Trustable.
+          </p>
+          <div className="text-xs text-slate-400 bg-white inline-block p-4 rounded-lg font-mono">
+            {'<!-- Cole o código <script> do widget do Google aqui futuramente -->'}
+          </div>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        {/* Avaliações fixas como backup */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16 opacity-70">
           {testimonials.map((t, idx) => (
             <div 
               key={idx}
-              className="bg-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 flex flex-col hover:-translate-y-2 h-full"
+              className="bg-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm transition-all duration-300 flex flex-col h-full"
             >
                <div className="mb-6">
                 <StarRating rating={t.rating} />
