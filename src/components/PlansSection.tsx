@@ -1,26 +1,31 @@
+import { useCoupon } from "@/contexts/CouponContext";
+
 const plans = [
   {
     title: "Semanal",
     subtitle: "Ideal para rotinas intensas",
     features: ["Limpeza completa semanal", "Profissional fixa dedicada", "Produtos inclusos", "Agendamento flexível"],
     recommended: false,
+    whatsappContext: "Olá! Tenho interesse no plano Semanal da Guio Clean.",
   },
   {
     title: "Quinzenal",
     subtitle: "O equilíbrio perfeito",
     features: ["Limpeza completa quinzenal", "Profissional fixa dedicada", "Produtos inclusos", "Melhor custo-benefício"],
     recommended: true,
+    whatsappContext: "Olá! Tenho interesse no plano Quinzenal da Guio Clean.",
   },
   {
     title: "Mensal",
     subtitle: "Manutenção essencial",
     features: ["Limpeza completa mensal", "Profissional fixa dedicada", "Produtos inclusos", "Ideal para manutenção"],
     recommended: false,
+    whatsappContext: "Olá! Tenho interesse no plano Mensal da Guio Clean.",
   },
 ];
 
 const PlansSection = () => {
-  const whatsappUrl = "https://wa.me/5511994699815?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20planos!";
+  const { getWhatsAppUrl } = useCoupon();
 
   return (
     <section id="planos" className="py-24 bg-secondary">
@@ -57,7 +62,7 @@ const PlansSection = () => {
               </ul>
 
               <a
-                href={whatsappUrl}
+                href={getWhatsAppUrl(plan.whatsappContext)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-auto w-full bg-primary text-primary-foreground font-heading font-bold text-sm py-3 rounded-lg text-center block hover:opacity-90 transition-opacity"
