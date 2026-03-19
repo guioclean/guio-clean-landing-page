@@ -107,6 +107,129 @@ export type Database = {
         }
         Relationships: []
       }
+      site_faqs: {
+        Row: {
+          active: boolean
+          answer: string
+          created_at: string
+          id: string
+          question: string
+          sort_order: number
+        }
+        Insert: {
+          active?: boolean
+          answer: string
+          created_at?: string
+          id?: string
+          question: string
+          sort_order?: number
+        }
+        Update: {
+          active?: boolean
+          answer?: string
+          created_at?: string
+          id?: string
+          question?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      site_locations: {
+        Row: {
+          active: boolean
+          created_at: string
+          icon_name: string
+          id: string
+          sort_order: number
+          title: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          icon_name?: string
+          id?: string
+          sort_order?: number
+          title: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          icon_name?: string
+          id?: string
+          sort_order?: number
+          title?: string
+        }
+        Relationships: []
+      }
+      site_plans: {
+        Row: {
+          active: boolean
+          created_at: string
+          features: string[]
+          id: string
+          recommended: boolean
+          sort_order: number
+          subtitle: string
+          title: string
+          whatsapp_context: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          features?: string[]
+          id?: string
+          recommended?: boolean
+          sort_order?: number
+          subtitle?: string
+          title: string
+          whatsapp_context?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          features?: string[]
+          id?: string
+          recommended?: boolean
+          sort_order?: number
+          subtitle?: string
+          title?: string
+          whatsapp_context?: string
+        }
+        Relationships: []
+      }
+      site_services: {
+        Row: {
+          active: boolean
+          created_at: string
+          description: string
+          id: string
+          image_url: string
+          sort_order: number
+          title: string
+          whatsapp_context: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string
+          sort_order?: number
+          title: string
+          whatsapp_context?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string
+          sort_order?: number
+          title?: string
+          whatsapp_context?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
