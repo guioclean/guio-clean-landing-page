@@ -23,7 +23,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 transition-transform hover:scale-105">
-          <img src={!scrolled ? logoBranca : logoColorida} alt="Guio Clean" className="h-24 md:h-28 lg:h-32 object-contain transition-all duration-300 drop-shadow-sm" />
+          <img src={scrolled ? logoColorida : logoBranca} alt="Guio Clean" className="h-48 md:h-56 lg:h-64 object-contain transition-all duration-300 drop-shadow-sm" />
         </a>
         <div className={`hidden md:flex items-center gap-8 font-heading font-medium text-sm transition-colors duration-300 ${scrolled ? "text-foreground" : "text-purple-100"}`}>
           <a href="#onde-atendemos" className={`transition-colors hover:-translate-y-0.5 duration-200 ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Onde Atendemos</a>
