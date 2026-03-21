@@ -142,7 +142,7 @@ const ContactSection = () => {
                 <p className="font-body text-primary-foreground/40 text-sm text-center sm:text-right">
                   © {new Date().getFullYear()} Guio Clean | CNPJ 32.500.521/0001-02
                 </p>
-                <a href="/admin" className="text-primary-foreground/20 hover:text-primary-foreground/50 transition-colors" title="Área administrativa">
+                <a href="/admin" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/20 hover:text-primary-foreground/50 transition-colors" title="Área administrativa">
                   <Settings className="w-4 h-4" />
                 </a>
               </div>
