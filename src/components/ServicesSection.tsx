@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useCoupon } from "@/contexts/CouponContext";
+import { ArrowRight } from "lucide-react";
 
 interface Service {
   id: string;
@@ -28,33 +29,52 @@ const ServicesSection = () => {
     <section id="servicos" className="py-24 bg-secondary">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center mb-16">
-          <span className="text-accent font-bold tracking-wider text-sm uppercase mb-3 block">Excelência</span>
-          <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-foreground mb-6 relative inline-block">
+          <span className="text-primary font-heading font-bold tracking-wider text-sm uppercase mb-3 block">Excelência</span>
+          <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-foreground mb-4">
             Nossos Serviços
           </h2>
           <p className="font-body text-muted-foreground text-lg max-w-2xl mx-auto">
-            Soluções personalizadas desenhadas para atender as necessidades específicas do seu espaço.
+            Soluções personalizadas para atender as necessidades específicas do seu espaço.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 mt-12">
-          {services.map((service, idx) => (
-            <div key={service.id}
-              className="group bg-card rounded-[2.5rem] p-6 lg:p-8 shadow-xl hover:shadow-[0_20px_40px_rgba(90,56,181,0.15)] hover:-translate-y-3 transition-all duration-500 cursor-pointer flex flex-col items-center text-center border-b-4 border-transparent hover:border-primary/40">
-              <div className="relative w-48 h-48 mx-auto mb-8 mt-4">
-                <div className={`absolute inset-0 bg-secondary rounded-[2.5rem] transform ${idx % 2 === 0 ? 'rotate-12' : '-rotate-12'} scale-105 group-hover:rotate-0 transition-transform duration-500 shadow-inner`} />
-                <div className={`absolute inset-0 bg-primary/10 rounded-[2.5rem] transform ${idx % 2 === 0 ? '-rotate-6' : 'rotate-6'} scale-100 group-hover:rotate-0 transition-transform duration-700`} />
-                <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden shadow-lg border-4 border-card transform transition-transform duration-500 group-hover:scale-105">
-                  <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" style={{ backgroundImage: `url(${service.image_url})` }} />
-                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
-                </div>
+        {/* Cards in horizontal row */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service) => (
+            <div
+              key={service.id}
+              className="bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group flex flex-col"
+            >
+              {/* Top colored strip */}
+              <div className="h-1.5 bg-primary w-full group-hover:bg-accent transition-colors duration-300" />
+              
+              {/* Image */}
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={service.image_url}
+                  alt={service.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
-              <h3 className="font-heading font-extrabold text-2xl text-foreground mb-4 group-hover:text-primary transition-colors duration-300">{service.title}</h3>
-              <p className="font-body text-muted-foreground leading-relaxed text-[15px] mb-8 flex-grow">{service.description}</p>
-              <a href={getWhatsAppUrl(service.whatsapp_context)} target="_blank" rel="noopener noreferrer"
-                className="w-full text-center bg-secondary text-primary font-heading font-bold px-6 py-4 rounded-xl border border-primary/20 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-transparent transition-all duration-300">
-                Orçamento Rápido
-              </a>
+
+              {/* Content */}
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-heading font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
+                  {service.description}
+                </p>
+                <a
+                  href={getWhatsAppUrl(service.whatsapp_context)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary font-heading font-bold text-sm hover:gap-3 transition-all duration-200"
+                >
+                  Saiba Mais
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           ))}
         </div>

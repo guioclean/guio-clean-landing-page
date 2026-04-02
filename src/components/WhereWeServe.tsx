@@ -26,43 +26,38 @@ const WhereWeServe = () => {
   if (loading || locations.length === 0) return null;
 
   return (
-    <section id="onde-atendemos" className="relative py-24 bg-white overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="onde-atendemos" className="py-24 bg-secondary">
+      <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center mb-16 space-y-4">
-          <p className="font-heading font-bold text-primary tracking-[0.2em] uppercase text-sm">Nossa Cobertura</p>
+          <span className="text-primary font-heading font-bold tracking-wider text-sm uppercase">Nossa Cobertura</span>
           <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-foreground">Onde Atendemos</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto font-light lg:text-lg">
-            Estamos prontos para levar excelência em limpeza para diversos tipos de ambientes, garantindo qualidade e satisfação.
+          <p className="text-muted-foreground max-w-2xl mx-auto font-body text-lg">
+            Levamos excelência em limpeza para diversos tipos de ambientes.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
           {locations.map((loc, index) => {
             const Icon = ICON_MAP[loc.icon_name] || Building;
-            const isHighlighted = index === 0;
             
             return (
               <div 
                 key={loc.id} 
-                className={`group flex flex-col p-10 rounded-[2.5rem] transition-all duration-500 hover:-translate-y-2 cursor-pointer border ${
-                  isHighlighted 
-                    ? "bg-primary text-white border-transparent shadow-2xl scale-105 z-10" 
-                    : "bg-secondary/50 border-border hover:bg-white hover:border-primary/30"
+                className={`group flex flex-col items-center text-center p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer border ${
+                  index === 0 
+                    ? "bg-primary text-primary-foreground border-transparent shadow-lg shadow-primary/20" 
+                    : "bg-card border-border hover:border-primary/30 hover:shadow-lg"
                 }`}
               >
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 ${
-                  isHighlighted ? "bg-white/20" : "bg-primary/10"
+                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${
+                  index === 0 ? "bg-primary-foreground/20" : "bg-primary/10"
                 }`}>
-                  <Icon className={`w-8 h-8 ${isHighlighted ? "text-white" : "text-primary"}`} />
+                  <Icon className={`w-7 h-7 ${index === 0 ? "text-primary-foreground" : "text-primary"}`} />
                 </div>
                 
-                <h3 className={`font-heading font-bold text-2xl mb-4 ${isHighlighted ? "text-white" : "text-foreground"}`}>
+                <h3 className={`font-heading font-bold text-lg ${index === 0 ? "text-primary-foreground" : "text-foreground"}`}>
                   {loc.title}
                 </h3>
-                
-                <p className={`font-light text-sm leading-relaxed mb-6 ${isHighlighted ? "text-white/80" : "text-muted-foreground"}`}>
-                  Atendimento especializado com protocolos de higiene rigorosos e profissionais altamente treinados.
-                </p>
               </div>
             );
           })}

@@ -1,6 +1,7 @@
 import StickyBanner from "@/components/StickyBanner";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import SocialProofBar from "@/components/SocialProofBar";
 import WhereWeServe from "@/components/WhereWeServe";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import ServicesSection from "@/components/ServicesSection";
@@ -19,9 +20,10 @@ const Index = () => {
         <Navbar />
         <main>
           <HeroSection />
-          <WhereWeServe />
-          <WhyChooseUs />
+          <SocialProofBar />
           <ServicesSection />
+          <WhyChooseUs />
+          <WhereWeServe />
           <PlansSection />
           <TestimonialsSection />
           <FAQSection />
