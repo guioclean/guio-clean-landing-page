@@ -83,6 +83,7 @@ const AdminDashboard = () => {
         {activeTab === "plans" && <PlansTab />}
         {activeTab === "faqs" && <FAQsTab />}
         {activeTab === "locations" && <LocationsTab />}
+        {activeTab === "shipping" && <ShippingTab />}
       </main>
     </div>
   );
