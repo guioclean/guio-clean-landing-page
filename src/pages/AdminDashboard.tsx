@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { LogOut, Users, Tag, Calculator, Briefcase, LayoutList, HelpCircle, MapPin } from "lucide-react";
+import { LogOut, Users, Tag, Calculator, Briefcase, LayoutList, HelpCircle, MapPin, Truck } from "lucide-react";
 
 import LeadsTab from "@/components/admin/LeadsTab";
 import CouponsTab from "@/components/admin/CouponsTab";
@@ -10,8 +10,9 @@ import ServicesTab from "@/components/admin/ServicesTab";
 import PlansTab from "@/components/admin/PlansTab";
 import FAQsTab from "@/components/admin/FAQsTab";
 import LocationsTab from "@/components/admin/LocationsTab";
+import ShippingTab from "@/components/admin/ShippingTab";
 
-type Tab = "leads" | "coupons" | "quotes" | "services" | "plans" | "faqs" | "locations";
+type Tab = "leads" | "coupons" | "quotes" | "services" | "plans" | "faqs" | "locations" | "shipping";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState<Tab>("leads");
@@ -43,6 +44,7 @@ const AdminDashboard = () => {
     { id: "plans" as Tab, label: "Planos", icon: LayoutList },
     { id: "faqs" as Tab, label: "FAQ", icon: HelpCircle },
     { id: "locations" as Tab, label: "Locais", icon: MapPin },
+    { id: "shipping" as Tab, label: "Frete/CEP", icon: Truck },
   ];
 
   return (
@@ -81,6 +83,7 @@ const AdminDashboard = () => {
         {activeTab === "plans" && <PlansTab />}
         {activeTab === "faqs" && <FAQsTab />}
         {activeTab === "locations" && <LocationsTab />}
+        {activeTab === "shipping" && <ShippingTab />}
       </main>
     </div>
   );
