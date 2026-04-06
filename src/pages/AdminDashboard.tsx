@@ -44,6 +44,7 @@ const AdminDashboard = () => {
     { id: "plans" as Tab, label: "Planos", icon: LayoutList },
     { id: "faqs" as Tab, label: "FAQ", icon: HelpCircle },
     { id: "locations" as Tab, label: "Locais", icon: MapPin },
+    { id: "shipping" as Tab, label: "Frete/CEP", icon: Truck },
   ];
 
   return (
