@@ -74,6 +74,27 @@ export type Database = {
         }
         Relationships: []
       }
+      quote_settings: {
+        Row: {
+          created_at: string
+          id: string
+          key: string
+          value: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          key: string
+          value: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          key?: string
+          value?: number
+        }
+        Relationships: []
+      }
       quotes: {
         Row: {
           area_sqm: number
@@ -104,6 +125,30 @@ export type Database = {
           id?: string
           notes?: string | null
           suggested_price?: number
+        }
+        Relationships: []
+      }
+      shipping_prefixes: {
+        Row: {
+          created_at: string
+          displacement_fee: number
+          id: string
+          prefix: string
+          region_name: string
+        }
+        Insert: {
+          created_at?: string
+          displacement_fee?: number
+          id?: string
+          prefix: string
+          region_name?: string
+        }
+        Update: {
+          created_at?: string
+          displacement_fee?: number
+          id?: string
+          prefix?: string
+          region_name?: string
         }
         Relationships: []
       }
