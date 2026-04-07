@@ -15,6 +15,7 @@ const ShippingTab = () => {
   const [prefixes, setPrefixes] = useState<Prefix[]>([]);
   const [hourlyRate, setHourlyRate] = useState("35");
   const [defaultFee, setDefaultFee] = useState("45");
+  const [disclaimerText, setDisclaimerText] = useState("");
   const [newPrefix, setNewPrefix] = useState("");
   const [newRegion, setNewRegion] = useState("");
   const [newFee, setNewFee] = useState("");
@@ -27,12 +28,14 @@ const ShippingTab = () => {
     const { data: pData } = await supabase.from("shipping_prefixes").select("*").order("prefix");
     if (pData) setPrefixes(pData.map(p => ({ ...p, displacement_fee: Number(p.displacement_fee) })));
 
-    const { data: sData } = await supabase.from("quote_settings").select("key, value");
+    const { data: sData } = await supabase.from("quote_settings").select("key, value, text_value");
     if (sData) {
       const hr = sData.find(s => s.key === "hourly_rate");
       const df = sData.find(s => s.key === "default_displacement_fee");
+      const disc = sData.find(s => s.key === "calculator_disclaimer");
       if (hr) setHourlyRate(String(hr.value));
       if (df) setDefaultFee(String(df.value));
+      if (disc) setDisclaimerText(disc.text_value || "");
     }
     setLoading(false);
   };
@@ -69,6 +72,7 @@ const ShippingTab = () => {
 
     await supabase.from("quote_settings").update({ value: hr } as any).eq("key", "hourly_rate");
     await supabase.from("quote_settings").update({ value: df } as any).eq("key", "default_displacement_fee");
+    await supabase.from("quote_settings").update({ text_value: disclaimerText } as any).eq("key", "calculator_disclaimer");
     toast.success("Configurações salvas!");
   };
 
@@ -159,6 +163,16 @@ const ShippingTab = () => {
               className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 font-body text-foreground outline-none focus:border-primary transition-colors"
             />
           </div>
+        </div>
+        <div className="mb-4">
+          <label className="font-heading font-bold text-sm text-foreground block mb-2">Aviso da Calculadora</label>
+          <textarea
+            value={disclaimerText}
+            onChange={(e) => setDisclaimerText(e.target.value)}
+            rows={3}
+            placeholder="Texto que aparecerá abaixo do valor estimado para o cliente..."
+            className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 font-body text-foreground outline-none focus:border-primary transition-colors resize-none"
+          />
         </div>
         <button onClick={handleSaveSettings} className="flex items-center gap-2 bg-primary text-primary-foreground font-heading font-bold px-5 py-2.5 rounded-xl hover:brightness-110 transition-all">
           <Save className="w-4 h-4" /> Salvar Configurações

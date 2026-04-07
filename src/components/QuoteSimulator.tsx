@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { MapPin, Clock, Calculator, Send, Sparkles } from "lucide-react";
+import { MapPin, Clock, Send, Sparkles } from "lucide-react";
 
 const QuoteSimulator = () => {
   const [cep, setCep] = useState("");
@@ -9,18 +9,21 @@ const QuoteSimulator = () => {
   const [prefixes, setPrefixes] = useState<{ prefix: string; region_name: string; displacement_fee: number }[]>([]);
   const [hourlyRate, setHourlyRate] = useState(35);
   const [defaultFee, setDefaultFee] = useState(45);
+  const [disclaimer, setDisclaimer] = useState("Importante: Este valor é uma estimativa baseada em produtividade padrão. O orçamento final pode sofrer variações de acordo com o nível de sujidade, acúmulo de objetos ou necessidades específicas (ex: pós-obra, limpeza técnica).");
 
   useEffect(() => {
     const load = async () => {
       const { data: pData } = await supabase.from("shipping_prefixes").select("prefix, region_name, displacement_fee");
       if (pData) setPrefixes(pData.map(p => ({ ...p, displacement_fee: Number(p.displacement_fee) })));
 
-      const { data: sData } = await supabase.from("quote_settings").select("key, value");
+      const { data: sData } = await supabase.from("quote_settings").select("key, value, text_value");
       if (sData) {
         const hr = sData.find(s => s.key === "hourly_rate");
         const df = sData.find(s => s.key === "default_displacement_fee");
+        const disc = sData.find(s => s.key === "calculator_disclaimer");
         if (hr) setHourlyRate(Number(hr.value));
         if (df) setDefaultFee(Number(df.value));
+        if (disc && disc.text_value) setDisclaimer(disc.text_value);
       }
     };
     load();
@@ -42,7 +45,7 @@ const QuoteSimulator = () => {
     return digits;
   };
 
-  const whatsappMessage = `Olá William! Simulei no site e para ${hoursNum}h no CEP ${cep} o valor ficou em R$ ${totalPrice.toFixed(2).replace(".", ",")}. Gostaria de agendar!`;
+  const whatsappMessage = `Olá William! Simulei no site da Guio Clean para ${hoursNum} horas no CEP ${cep}. O valor estimado ficou em R$ ${totalPrice.toFixed(2).replace(".", ",")}. Gostaria de confirmar esse orçamento e verificar sua disponibilidade de agenda! (Estou ciente de que o valor final depende da avaliação das condições do local).`;
   const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
@@ -109,15 +112,21 @@ const QuoteSimulator = () => {
 
             {/* Resultado */}
             {totalPrice > 0 && (
-              <div className="bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-xl p-6 text-center animate-in fade-in slide-in-from-bottom-2 duration-300">
-                <p className="font-body text-sm text-muted-foreground mb-1">Valor Estimado</p>
-                <p className="font-heading font-extrabold text-4xl md:text-5xl text-primary">
-                  R$ {totalPrice.toFixed(2).replace(".", ",")}
-                </p>
-                <div className="flex justify-center gap-6 mt-3 text-xs font-body text-muted-foreground">
-                  <span>Mão de obra: R$ {laborCost.toFixed(2).replace(".", ",")}</span>
-                  <span>Desloc.: R$ {displacementFee.toFixed(2).replace(".", ",")}</span>
+              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+                <div className="bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-xl p-6 text-center">
+                  <p className="font-body text-sm text-muted-foreground mb-1">Valor Estimado</p>
+                  <p className="font-heading font-extrabold text-4xl md:text-5xl text-primary">
+                    R$ {totalPrice.toFixed(2).replace(".", ",")}
+                  </p>
+                  <div className="flex justify-center gap-6 mt-3 text-xs font-body text-muted-foreground">
+                    <span>Mão de obra: R$ {laborCost.toFixed(2).replace(".", ",")}</span>
+                    <span>Desloc.: R$ {displacementFee.toFixed(2).replace(".", ",")}</span>
+                  </div>
                 </div>
+                {/* Aviso de estimativa */}
+                <p className="mt-3 text-xs italic text-muted-foreground/70 leading-relaxed px-1">
+                  {disclaimer}
+                </p>
               </div>
             )}
 
@@ -128,7 +137,7 @@ const QuoteSimulator = () => {
               rel="noopener noreferrer"
               className={`w-full flex items-center justify-center gap-2.5 font-heading font-bold text-lg py-4 rounded-xl transition-all ${
                 totalPrice > 0
-                  ? "bg-green-600 text-white hover:bg-green-700 shadow-lg hover:shadow-xl cursor-pointer"
+                  ? "bg-green-600 text-white hover:bg-green-700 shadow-lg hover:shadow-xl cursor-pointer md:static sticky bottom-4 z-10"
                   : "bg-muted text-muted-foreground pointer-events-none opacity-40"
               }`}
             >
