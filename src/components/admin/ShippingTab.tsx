@@ -164,6 +164,16 @@ const ShippingTab = () => {
             />
           </div>
         </div>
+        <div className="mb-4">
+          <label className="font-heading font-bold text-sm text-foreground block mb-2">Aviso da Calculadora</label>
+          <textarea
+            value={disclaimerText}
+            onChange={(e) => setDisclaimerText(e.target.value)}
+            rows={3}
+            placeholder="Texto que aparecerá abaixo do valor estimado para o cliente..."
+            className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 font-body text-foreground outline-none focus:border-primary transition-colors resize-none"
+          />
+        </div>
         <button onClick={handleSaveSettings} className="flex items-center gap-2 bg-primary text-primary-foreground font-heading font-bold px-5 py-2.5 rounded-xl hover:brightness-110 transition-all">
           <Save className="w-4 h-4" /> Salvar Configurações
         </button>
