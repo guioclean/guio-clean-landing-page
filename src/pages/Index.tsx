@@ -5,6 +5,7 @@ import SocialProofBar from "@/components/SocialProofBar";
 import WhereWeServe from "@/components/WhereWeServe";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import ServicesSection from "@/components/ServicesSection";
+import QuoteSimulator from "@/components/QuoteSimulator";
 import PlansSection from "@/components/PlansSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
