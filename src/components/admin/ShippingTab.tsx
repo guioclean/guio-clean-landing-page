@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Plus, Trash2, Save, DollarSign } from "lucide-react";
+import { Plus, Trash2, Save, DollarSign, Upload } from "lucide-react";
 import { toast } from "sonner";
+import * as XLSX from "xlsx";
 
 type Prefix = {
   id: string;
@@ -18,6 +19,8 @@ const ShippingTab = () => {
   const [newRegion, setNewRegion] = useState("");
   const [newFee, setNewFee] = useState("");
   const [loading, setLoading] = useState(true);
+  const [importing, setImporting] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const load = async () => {
     setLoading(true);
@@ -69,6 +72,69 @@ const ShippingTab = () => {
     toast.success("Configurações salvas!");
   };
 
+  const handleImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setImporting(true);
+    try {
+      const data = await file.arrayBuffer();
+      const workbook = XLSX.read(data, { type: "array" });
+      const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      const rows: any[] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+      // Skip header row, parse data
+      const parsed: { prefix: string; region_name: string; displacement_fee: number }[] = [];
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        if (!row || !row[0]) continue;
+
+        // Parse prefix - pad to 3 digits
+        let rawPrefix = String(row[0]).replace(/\D/g, "");
+        if (rawPrefix.length === 1) rawPrefix = "00" + rawPrefix;
+        else if (rawPrefix.length === 2) rawPrefix = "0" + rawPrefix;
+        rawPrefix = rawPrefix.substring(0, 3);
+
+        const regionName = String(row[1] || "Sem nome").trim();
+
+        // Parse fee - handle "R$ 40.00" format
+        let feeStr = String(row[2] || "0").replace("R$", "").replace(",", ".").trim();
+        const fee = parseFloat(feeStr);
+
+        if (rawPrefix.length === 3 && !isNaN(fee)) {
+          parsed.push({ prefix: rawPrefix, region_name: regionName, displacement_fee: fee });
+        }
+      }
+
+      if (parsed.length === 0) {
+        toast.error("Nenhum dado válido encontrado na planilha");
+        setImporting(false);
+        return;
+      }
+
+      // Delete all existing prefixes
+      const { data: existing } = await supabase.from("shipping_prefixes").select("id");
+      if (existing && existing.length > 0) {
+        for (const item of existing) {
+          await supabase.from("shipping_prefixes").delete().eq("id", item.id);
+        }
+      }
+
+      // Insert new prefixes
+      const { error } = await supabase.from("shipping_prefixes").insert(parsed);
+      if (error) {
+        toast.error("Erro ao importar: " + error.message);
+      } else {
+        toast.success(`${parsed.length} prefixos importados com sucesso!`);
+        load();
+      }
+    } catch (err: any) {
+      toast.error("Erro ao ler arquivo: " + (err.message || "formato inválido"));
+    }
+    setImporting(false);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
   if (loading) return <p className="text-muted-foreground font-body">Carregando...</p>;
 
   return (
@@ -96,6 +162,29 @@ const ShippingTab = () => {
         </div>
         <button onClick={handleSaveSettings} className="flex items-center gap-2 bg-primary text-primary-foreground font-heading font-bold px-5 py-2.5 rounded-xl hover:brightness-110 transition-all">
           <Save className="w-4 h-4" /> Salvar Configurações
+        </button>
+      </div>
+
+      {/* Importar Planilha */}
+      <div className="bg-card rounded-xl border border-border p-6">
+        <h3 className="font-heading font-extrabold text-lg text-foreground mb-2">Importar Planilha</h3>
+        <p className="font-body text-sm text-muted-foreground mb-4">
+          Envie um arquivo CSV ou Excel (.xlsx) com as colunas: <strong>Prefixo (3 dígitos)</strong>, <strong>Nome da Região</strong> e <strong>Valor (R$)</strong>. Todos os prefixos existentes serão substituídos.
+        </p>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".csv,.xlsx,.xls"
+          onChange={handleImportFile}
+          className="hidden"
+        />
+        <button
+          onClick={() => fileInputRef.current?.click()}
+          disabled={importing}
+          className="flex items-center gap-2 bg-accent text-accent-foreground font-heading font-bold px-5 py-2.5 rounded-xl hover:brightness-110 transition-all disabled:opacity-50"
+        >
+          <Upload className="w-4 h-4" />
+          {importing ? "Importando..." : "Importar Planilha (CSV/Excel)"}
         </button>
       </div>
 
