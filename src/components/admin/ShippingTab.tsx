@@ -15,6 +15,7 @@ const ShippingTab = () => {
   const [prefixes, setPrefixes] = useState<Prefix[]>([]);
   const [hourlyRate, setHourlyRate] = useState("35");
   const [defaultFee, setDefaultFee] = useState("45");
+  const [disclaimerText, setDisclaimerText] = useState("");
   const [newPrefix, setNewPrefix] = useState("");
   const [newRegion, setNewRegion] = useState("");
   const [newFee, setNewFee] = useState("");
@@ -27,12 +28,14 @@ const ShippingTab = () => {
     const { data: pData } = await supabase.from("shipping_prefixes").select("*").order("prefix");
     if (pData) setPrefixes(pData.map(p => ({ ...p, displacement_fee: Number(p.displacement_fee) })));
 
-    const { data: sData } = await supabase.from("quote_settings").select("key, value");
+    const { data: sData } = await supabase.from("quote_settings").select("key, value, text_value");
     if (sData) {
       const hr = sData.find(s => s.key === "hourly_rate");
       const df = sData.find(s => s.key === "default_displacement_fee");
+      const disc = sData.find(s => s.key === "calculator_disclaimer");
       if (hr) setHourlyRate(String(hr.value));
       if (df) setDefaultFee(String(df.value));
+      if (disc) setDisclaimerText(disc.text_value || "");
     }
     setLoading(false);
   };
