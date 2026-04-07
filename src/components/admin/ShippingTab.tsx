@@ -72,6 +72,7 @@ const ShippingTab = () => {
 
     await supabase.from("quote_settings").update({ value: hr } as any).eq("key", "hourly_rate");
     await supabase.from("quote_settings").update({ value: df } as any).eq("key", "default_displacement_fee");
+    await supabase.from("quote_settings").update({ text_value: disclaimerText } as any).eq("key", "calculator_disclaimer");
     toast.success("Configurações salvas!");
   };
 
