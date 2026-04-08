@@ -23,7 +23,7 @@ const Index = () => {
           <HeroSection />
           <SocialProofBar />
           <ServicesSection />
-          <QuoteSimulator />
+          
           <WhyChooseUs />
           <WhereWeServe />
           <PlansSection />
