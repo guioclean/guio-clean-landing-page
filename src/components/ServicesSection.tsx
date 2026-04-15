@@ -31,10 +31,10 @@ const ServicesSection = () => {
         <div className="text-center mb-16">
           <span className="text-primary font-heading font-bold tracking-wider text-sm uppercase mb-3 block">Excelência</span>
           <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-foreground mb-4">
-            Nossos Serviços
+            Serviços de Limpeza Profissional
           </h2>
           <p className="font-body text-muted-foreground text-lg max-w-2xl mx-auto">
-            Soluções personalizadas para atender as necessidades específicas do seu espaço.
+            Nossa agência de diaristas oferece soluções personalizadas para atender as necessidades específicas do seu espaço.
           </p>
         </div>
 
