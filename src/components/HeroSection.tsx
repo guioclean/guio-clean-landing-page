@@ -17,12 +17,12 @@ const HeroSection = () => {
           {/* Left Column: Text Content */}
           <div className="space-y-8 max-w-xl text-center lg:text-left animate-fade-in">
             <h1 className="font-heading font-extrabold text-5xl md:text-6xl lg:text-[4.2rem] text-foreground leading-[1.08]">
-              Sua casa brilhando{" "}
-              <span className="text-primary">como nunca.</span>
+              Agência de Diaristas{" "}
+              <span className="text-primary">em São Paulo</span>
             </h1>
             
             <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg mx-auto lg:mx-0">
-              Profissionais treinados e técnicas de ponta para cuidar do seu lar. Agende sua limpeza em segundos de forma simples e rápida.
+              Diaristas profissionais treinadas e verificadas para cuidar do seu lar, escritório ou clínica. Agende sua limpeza profissional em segundos, de forma simples e rápida.
             </p>
 
             <div className="pt-4 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
@@ -71,9 +71,9 @@ const HeroSection = () => {
             </div>
             <div className="relative z-10">
               <img 
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=600&h=700" 
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=600&h=700"
                 className="w-[480px] h-[560px] object-cover rounded-3xl shadow-2xl" 
-                alt="Profissional de limpeza Guio Clean" 
+                alt="Diarista profissional da agência Guio Clean realizando limpeza residencial em São Paulo" 
               />
               {/* Floating card */}
               <div className="absolute -bottom-6 -left-8 bg-card rounded-2xl shadow-xl p-5 border border-border animate-fade-in">

@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
           <div className="relative">
             <img
               src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80&w=600&h=500"
-              alt="Profissional de limpeza com luvas amarelas"
+              alt="Profissional de limpeza profissional da agência de diaristas Guio Clean"
               className="w-full h-[480px] object-cover rounded-3xl shadow-xl"
             />
             <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground rounded-2xl p-6 shadow-xl hidden md:block">
@@ -46,7 +46,7 @@ const WhyChooseUs = () => {
             <div>
               <span className="text-primary font-heading font-bold tracking-wider text-sm uppercase mb-3 block">Por que nos escolher</span>
               <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-foreground mb-4 leading-tight">
-                Nós cuidamos da limpeza,{" "}
+                Sua agência de diaristas cuida da limpeza,{" "}
                 <span className="text-primary">você foca no que importa.</span>
               </h2>
               <p className="font-body text-muted-foreground text-lg">
