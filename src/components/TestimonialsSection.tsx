@@ -8,58 +8,32 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Helmet } from "react-helmet-async";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
-// Avaliações reais coletadas do perfil Google da Guio Clean.
-// Mantemos nomes e textos fiéis para preservar autenticidade e SEO local.
-const testimonials = [
+type Testimonial = {
+  id: string;
+  author_name: string;
+  author_role: string;
+  text: string;
+  rating: number;
+  review_date: string;
+  avatar_url: string;
+  review_link: string;
+};
+
+// Avaliações de exemplo exibidas APENAS quando ainda não há avaliações reais cadastradas
+// no painel administrativo. Assim que o admin cadastra a primeira, elas somem.
+const fallbackTestimonials: Testimonial[] = [
   {
-    name: "Carolina Mendes",
-    profession: "Arquiteta — Vila Mariana",
-    avatar: "https://i.pravatar.cc/150?u=carolinamendes",
+    id: "f1",
+    author_name: "Carolina Mendes",
+    author_role: "Arquiteta — Vila Mariana",
+    avatar_url: "https://i.pravatar.cc/150?u=carolinamendes",
     rating: 5,
-    text: "Minha rotina no escritório sempre foi cheia, mas ter a Guio Clean mudou tudo. Chego em casa e o cheiro de limpeza traz uma paz absurda. Profissionais super atenciosas e pontuais.",
-    date: "2025-02-12",
-  },
-  {
-    name: "Dr. Roberto Freitas",
-    profession: "Médico Oftalmologista — Itaim",
-    avatar: "https://i.pravatar.cc/150?u=robertofreitas",
-    rating: 5,
-    text: "O nível de higienização na nossa clínica subiu exponencialmente. Cuidam dos consultórios com os produtos certos e nunca tivemos um atraso. Recomendo de olhos fechados.",
-    date: "2025-01-28",
-  },
-  {
-    name: "Mariana Souza",
-    profession: "Mãe e Empreendedora — Moema",
-    avatar: "https://i.pravatar.cc/150?u=marianasouza",
-    rating: 5,
-    text: "A limpeza pós-obra foi um investimento perfeito. Parecia mágica ver tudo brilhando no mesmo dia. Atendimento humano do começo ao fim.",
-    date: "2025-03-04",
-  },
-  {
-    name: "Felipe Andrade",
-    profession: "Engenheiro — Brooklin",
-    avatar: "https://i.pravatar.cc/150?u=felipeandrade",
-    rating: 5,
-    text: "Contratei pelo plano quinzenal e nunca mais quero outra agência. Diaristas treinadas, comunicação rápida pelo WhatsApp e preço justo. Top demais!",
-    date: "2025-02-22",
-  },
-  {
-    name: "Patrícia Lima",
-    profession: "Advogada — Pinheiros",
-    avatar: "https://i.pravatar.cc/150?u=patricialima",
-    rating: 5,
-    text: "Marquei pela manhã, no mesmo dia tinha uma profissional aqui em casa. Apartamento ficou impecável e o cheirinho dura dias. Virei cliente fiel.",
-    date: "2025-03-15",
-  },
-  {
-    name: "Lucas Ribeiro",
-    profession: "Empresário — Saúde",
-    avatar: "https://i.pravatar.cc/150?u=lucasribeiro",
-    rating: 5,
-    text: "Atendimento dez. A William sempre responde rápido, ajustou tudo conforme minha agenda corrida. A diarista trouxe os produtos e deixou tudo brilhando.",
-    date: "2025-01-10",
+    text: "Exemplo: cadastre suas avaliações reais no painel administrativo para substituir esta demonstração.",
+    review_date: "2025-02-12",
+    review_link: "",
   },
 ];
 
@@ -84,6 +58,24 @@ const TestimonialsSection = () => {
   const autoplay = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
   );
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(fallbackTestimonials);
+  const [googleUrl, setGoogleUrl] = useState("https://www.google.com/search?q=Guio+Clean+S%C3%A3o+Paulo");
+
+  useEffect(() => {
+    (async () => {
+      const [{ data: list }, { data: setting }] = await Promise.all([
+        supabase
+          .from("site_testimonials")
+          .select("*")
+          .eq("active", true)
+          .order("sort_order")
+          .order("review_date", { ascending: false }),
+        supabase.from("quote_settings").select("text_value").eq("key", "google_reviews_url").maybeSingle(),
+      ]);
+      if (list && list.length > 0) setTestimonials(list as Testimonial[]);
+      if (setting?.text_value) setGoogleUrl(setting.text_value);
+    })();
+  }, []);
 
   // Schema.org Review markup para indexação rica no Google
   const reviewSchema = {
@@ -98,8 +90,8 @@ const TestimonialsSection = () => {
     },
     "review": testimonials.map((t) => ({
       "@type": "Review",
-      "author": { "@type": "Person", "name": t.name },
-      "datePublished": t.date,
+      "author": { "@type": "Person", "name": t.author_name },
+      "datePublished": t.review_date,
       "reviewRating": {
         "@type": "Rating",
         "ratingValue": t.rating.toString(),
@@ -140,9 +132,9 @@ const TestimonialsSection = () => {
           className="w-full"
         >
           <CarouselContent className="-ml-4">
-            {testimonials.map((t, idx) => (
+            {testimonials.map((t) => (
               <CarouselItem
-                key={idx}
+                key={t.id}
                 className="pl-4 md:basis-1/2 lg:basis-1/3"
               >
                 <article className="bg-card border border-border rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative">
@@ -161,18 +153,24 @@ const TestimonialsSection = () => {
                   </p>
 
                   <footer className="flex items-center gap-3 mt-auto pt-6 border-t border-border">
-                    <img
-                      src={t.avatar}
-                      alt={`Foto de ${t.name}, cliente da agência de diaristas Guio Clean`}
-                      loading="lazy"
-                      className="w-11 h-11 rounded-full object-cover ring-2 ring-primary/20"
-                    />
+                    {t.avatar_url ? (
+                      <img
+                        src={t.avatar_url}
+                        alt={`Foto de ${t.author_name}, cliente da agência de diaristas Guio Clean`}
+                        loading="lazy"
+                        className="w-11 h-11 rounded-full object-cover ring-2 ring-primary/20"
+                      />
+                    ) : (
+                      <div className="w-11 h-11 rounded-full bg-primary/10 ring-2 ring-primary/20 flex items-center justify-center font-heading font-bold text-primary">
+                        {t.author_name.charAt(0)}
+                      </div>
+                    )}
                     <div>
                       <h3 className="font-heading font-bold text-sm text-foreground">
-                        {t.name}
+                        {t.author_name}
                       </h3>
                       <p className="font-body text-xs text-primary font-medium">
-                        {t.profession}
+                        {t.author_role}
                       </p>
                     </div>
                   </footer>
@@ -186,7 +184,7 @@ const TestimonialsSection = () => {
 
         <div className="text-center mt-10">
           <a
-            href="https://www.google.com/search?q=Guio+Clean+S%C3%A3o+Paulo"
+            href={googleUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-primary font-heading font-semibold hover:underline"

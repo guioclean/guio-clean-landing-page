@@ -123,7 +123,6 @@ const ContactSection = () => {
                   <li><a href="#servicos" className="hover:text-accent transition-colors">Nossos Serviços</a></li>
                   <li><a href="#depoimentos" className="hover:text-accent transition-colors">Avaliações</a></li>
                   <li><a href="#planos" className="hover:text-accent transition-colors">Planos Assinatura</a></li>
-                  <li><a href="#" className="hover:text-accent transition-colors">Trabalhe Conosco</a></li>
                 </ul>
               </div>
             </div>
