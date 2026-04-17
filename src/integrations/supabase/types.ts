@@ -278,6 +278,48 @@ export type Database = {
         }
         Relationships: []
       }
+      site_testimonials: {
+        Row: {
+          active: boolean
+          author_name: string
+          author_role: string
+          avatar_url: string
+          created_at: string
+          id: string
+          rating: number
+          review_date: string
+          review_link: string
+          sort_order: number
+          text: string
+        }
+        Insert: {
+          active?: boolean
+          author_name: string
+          author_role?: string
+          avatar_url?: string
+          created_at?: string
+          id?: string
+          rating?: number
+          review_date?: string
+          review_link?: string
+          sort_order?: number
+          text: string
+        }
+        Update: {
+          active?: boolean
+          author_name?: string
+          author_role?: string
+          avatar_url?: string
+          created_at?: string
+          id?: string
+          rating?: number
+          review_date?: string
+          review_link?: string
+          sort_order?: number
+          text?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
