@@ -27,7 +27,7 @@ const FAQSection = () => {
   if (loading || faqs.length === 0) return null;
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-gradient-soft">
       <div className="container mx-auto px-6 max-w-3xl">
         <div className="text-center mb-14">
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground mb-4">Perguntas Frequentes</h2>

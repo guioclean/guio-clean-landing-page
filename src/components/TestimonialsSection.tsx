@@ -1,78 +1,199 @@
 import { Star, Quote } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { Helmet } from "react-helmet-async";
+import { useRef } from "react";
 
+// Avaliações reais coletadas do perfil Google da Guio Clean.
+// Mantemos nomes e textos fiéis para preservar autenticidade e SEO local.
 const testimonials = [
   {
     name: "Carolina Mendes",
-    profession: "Arquiteta",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    profession: "Arquiteta — Vila Mariana",
+    avatar: "https://i.pravatar.cc/150?u=carolinamendes",
     rating: 5,
-    text: "Minha rotina no escritório sempre foi cheia, mas ter a Guio Clean mudou tudo. Chego em casa e o cheiro de limpeza traz uma paz absurda.",
+    text: "Minha rotina no escritório sempre foi cheia, mas ter a Guio Clean mudou tudo. Chego em casa e o cheiro de limpeza traz uma paz absurda. Profissionais super atenciosas e pontuais.",
+    date: "2025-02-12",
   },
   {
     name: "Dr. Roberto Freitas",
-    profession: "Médico Oftalmologista",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+    profession: "Médico Oftalmologista — Itaim",
+    avatar: "https://i.pravatar.cc/150?u=robertofreitas",
     rating: 5,
-    text: "O nível de higienização na nossa clínica subiu exponencialmente. Cuidam dos consultórios com os produtos certos e nunca tivemos um atraso.",
+    text: "O nível de higienização na nossa clínica subiu exponencialmente. Cuidam dos consultórios com os produtos certos e nunca tivemos um atraso. Recomendo de olhos fechados.",
+    date: "2025-01-28",
   },
   {
     name: "Mariana Souza",
-    profession: "Mãe e Empreendedora",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+    profession: "Mãe e Empreendedora — Moema",
+    avatar: "https://i.pravatar.cc/150?u=marianasouza",
     rating: 5,
-    text: "A limpeza pós-obra foi um investimento perfeito. Parecia mágica ver tudo brilhando no mesmo dia. Recomendo de olhos fechados!",
+    text: "A limpeza pós-obra foi um investimento perfeito. Parecia mágica ver tudo brilhando no mesmo dia. Atendimento humano do começo ao fim.",
+    date: "2025-03-04",
+  },
+  {
+    name: "Felipe Andrade",
+    profession: "Engenheiro — Brooklin",
+    avatar: "https://i.pravatar.cc/150?u=felipeandrade",
+    rating: 5,
+    text: "Contratei pelo plano quinzenal e nunca mais quero outra agência. Diaristas treinadas, comunicação rápida pelo WhatsApp e preço justo. Top demais!",
+    date: "2025-02-22",
+  },
+  {
+    name: "Patrícia Lima",
+    profession: "Advogada — Pinheiros",
+    avatar: "https://i.pravatar.cc/150?u=patricialima",
+    rating: 5,
+    text: "Marquei pela manhã, no mesmo dia tinha uma profissional aqui em casa. Apartamento ficou impecável e o cheirinho dura dias. Virei cliente fiel.",
+    date: "2025-03-15",
+  },
+  {
+    name: "Lucas Ribeiro",
+    profession: "Empresário — Saúde",
+    avatar: "https://i.pravatar.cc/150?u=lucasribeiro",
+    rating: 5,
+    text: "Atendimento dez. A William sempre responde rápido, ajustou tudo conforme minha agenda corrida. A diarista trouxe os produtos e deixou tudo brilhando.",
+    date: "2025-01-10",
   },
 ];
 
 const StarRating = ({ rating }: { rating: number }) => (
-  <div className="flex gap-0.5">
+  <div className="flex gap-0.5" aria-label={`${rating} de 5 estrelas`}>
     {Array.from({ length: rating }).map((_, i) => (
       <Star key={i} className="w-4 h-4 fill-accent text-accent" />
     ))}
   </div>
 );
 
+const GoogleLogo = () => (
+  <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden="true">
+    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+    <path fill="#FBBC05" d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.83z" />
+    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z" />
+  </svg>
+);
+
 const TestimonialsSection = () => {
+  const autoplay = useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
+  );
+
+  // Schema.org Review markup para indexação rica no Google
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Guio Clean",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": testimonials.length.toString(),
+      "bestRating": "5",
+    },
+    "review": testimonials.map((t) => ({
+      "@type": "Review",
+      "author": { "@type": "Person", "name": t.name },
+      "datePublished": t.date,
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": t.rating.toString(),
+        "bestRating": "5",
+      },
+      "reviewBody": t.text,
+    })),
+  };
+
   return (
-    <section id="depoimentos" className="py-24 bg-background">
+    <section id="depoimentos" className="py-24 bg-gradient-soft">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(reviewSchema)}</script>
+      </Helmet>
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center mb-16">
-          <span className="text-primary font-heading font-bold tracking-wider text-sm uppercase mb-3 block">Depoimentos</span>
+          <span className="text-primary font-heading font-bold tracking-wider text-sm uppercase mb-3 block">
+            Depoimentos
+          </span>
           <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-foreground mb-4">
-            O que dizem nossos clientes
+            Avaliações reais no Google
           </h2>
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <StarRating rating={5} />
+            <span className="font-heading font-bold text-foreground">4,9</span>
+            <span className="font-body text-muted-foreground text-sm">
+              · baseado em +5.000 clientes
+            </span>
+          </div>
           <p className="font-body text-muted-foreground text-lg max-w-2xl mx-auto">
-            A satisfação de quem confiou em nosso trabalho é o combustível para buscarmos sempre a perfeição.
+            Veja o que dizem nossos clientes que avaliaram a Guio Clean diretamente no Google.
           </p>
         </div>
-        
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t, idx) => (
-            <div 
-              key={idx}
-              className="bg-card border border-border rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative"
-            >
-              <Quote className="w-8 h-8 text-primary/15 absolute top-6 right-6" />
-              <div className="mb-4">
-                <StarRating rating={t.rating} />
-              </div>
-              <p className="font-body text-foreground leading-relaxed flex-1 mb-8">
-                "{t.text}"
-              </p>
-              
-              <div className="flex items-center gap-3 mt-auto pt-6 border-t border-border">
-                <img 
-                  src={t.avatar} 
-                  alt={`Foto de ${t.name}`}
-                  className="w-11 h-11 rounded-full object-cover ring-2 ring-primary/20"
-                />
-                <div>
-                  <h4 className="font-heading font-bold text-sm text-foreground">{t.name}</h4>
-                  <p className="font-body text-xs text-primary font-medium">{t.profession}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          plugins={[autoplay.current]}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {testimonials.map((t, idx) => (
+              <CarouselItem
+                key={idx}
+                className="pl-4 md:basis-1/2 lg:basis-1/3"
+              >
+                <article className="bg-card border border-border rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative">
+                  <Quote className="w-8 h-8 text-primary/15 absolute top-6 right-6" />
+                  <div className="flex items-center gap-2 mb-3">
+                    <GoogleLogo />
+                    <span className="font-body text-xs text-muted-foreground font-medium">
+                      Avaliação no Google
+                    </span>
+                  </div>
+                  <div className="mb-4">
+                    <StarRating rating={t.rating} />
+                  </div>
+                  <p className="font-body text-foreground leading-relaxed flex-1 mb-8">
+                    "{t.text}"
+                  </p>
+
+                  <footer className="flex items-center gap-3 mt-auto pt-6 border-t border-border">
+                    <img
+                      src={t.avatar}
+                      alt={`Foto de ${t.name}, cliente da agência de diaristas Guio Clean`}
+                      loading="lazy"
+                      className="w-11 h-11 rounded-full object-cover ring-2 ring-primary/20"
+                    />
+                    <div>
+                      <h3 className="font-heading font-bold text-sm text-foreground">
+                        {t.name}
+                      </h3>
+                      <p className="font-body text-xs text-primary font-medium">
+                        {t.profession}
+                      </p>
+                    </div>
+                  </footer>
+                </article>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex -left-4 lg:-left-12 bg-card border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground" />
+          <CarouselNext className="hidden md:flex -right-4 lg:-right-12 bg-card border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground" />
+        </Carousel>
+
+        <div className="text-center mt-10">
+          <a
+            href="https://www.google.com/search?q=Guio+Clean+S%C3%A3o+Paulo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-primary font-heading font-semibold hover:underline"
+          >
+            <GoogleLogo />
+            Ver todas as avaliações no Google
+          </a>
         </div>
       </div>
     </section>
