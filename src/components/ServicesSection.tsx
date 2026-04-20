@@ -52,7 +52,11 @@ const ServicesSection = () => {
               <div className="h-48 overflow-hidden">
                 <img
                   src={service.image_url}
-                  alt={service.title}
+                  alt={`Serviço de ${service.title} — Guio Clean`}
+                  width={400}
+                  height={192}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>

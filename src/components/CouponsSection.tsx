@@ -63,13 +63,14 @@ const CouponsSection = () => {
 
               <button
                 onClick={() => handleCopy(coupon.code)}
+                aria-label={`Copiar cupom ${coupon.code} — ${coupon.discount}`}
                 className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary hover:text-primary-foreground text-primary font-heading font-bold px-6 py-3 rounded-full transition-all duration-300 border-2 border-dashed border-primary/30 hover:border-transparent tracking-widest"
               >
                 {coupon.code}
                 {copiedCode === coupon.code ? (
-                  <Check className="w-5 h-5" />
+                  <Check className="w-5 h-5" aria-hidden="true" />
                 ) : (
-                  <Copy className="w-5 h-5" />
+                  <Copy className="w-5 h-5" aria-hidden="true" />
                 )}
               </button>
 

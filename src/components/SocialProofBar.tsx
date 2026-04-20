@@ -7,9 +7,9 @@ const SocialProofBar = () => {
             Mais de <span className="text-primary font-extrabold">5.000</span> clientes satisfeitos confiam na Guio Clean
           </p>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16 opacity-40">
+        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16 opacity-70">
           {["Residencial", "Comercial", "Condomínios", "Clínicas", "Escritórios"].map((item) => (
-            <span key={item} className="font-heading font-bold text-lg md:text-xl text-foreground tracking-wide uppercase">
+            <span key={item} className="font-heading font-bold text-lg md:text-xl text-muted-foreground tracking-wide uppercase">
               {item}
             </span>
           ))}

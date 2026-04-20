@@ -158,10 +158,13 @@ const TestimonialsSection = () => {
                         src={t.avatar_url}
                         alt={`Foto de ${t.author_name}, cliente da agência de diaristas Guio Clean`}
                         loading="lazy"
+                        decoding="async"
+                        width={44}
+                        height={44}
                         className="w-11 h-11 rounded-full object-cover ring-2 ring-primary/20"
                       />
                     ) : (
-                      <div className="w-11 h-11 rounded-full bg-primary/10 ring-2 ring-primary/20 flex items-center justify-center font-heading font-bold text-primary">
+                      <div aria-hidden="true" className="w-11 h-11 rounded-full bg-primary/10 ring-2 ring-primary/20 flex items-center justify-center font-heading font-bold text-primary">
                         {t.author_name.charAt(0)}
                       </div>
                     )}

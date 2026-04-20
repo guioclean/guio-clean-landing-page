@@ -63,7 +63,7 @@ const PlansSection = () => {
         <div className="container mx-auto px-6">
           {/* Header */}
           <div className="text-center mb-14">
-            <p className="text-white/70 text-sm font-heading font-semibold uppercase tracking-widest mb-2">
+            <p className="text-white text-sm font-heading font-semibold uppercase tracking-widest mb-2 opacity-90">
               Nossos Planos
             </p>
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-white">
@@ -110,7 +110,7 @@ const PlansSection = () => {
                 </div>
 
                 <h3 className="font-heading font-bold text-xl text-white mb-1">{plan.title}</h3>
-                <p className="text-white/70 text-sm font-body mb-6">{plan.subtitle}</p>
+                <p className="text-white text-sm font-body mb-6 opacity-90">{plan.subtitle}</p>
 
                 <ul className="space-y-3 mb-8 flex-1">
                   {plan.features.map((f) => (
