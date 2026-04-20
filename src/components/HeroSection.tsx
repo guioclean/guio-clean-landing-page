@@ -1,5 +1,6 @@
 import { useCoupon } from "@/contexts/CouponContext";
 import { ArrowRight, Play } from "lucide-react";
+import heroImage from "@/assets/hero-cleaning.webp";
 
 const HeroSection = () => {
   const { getWhatsAppUrl } = useCoupon();
@@ -71,7 +72,7 @@ const HeroSection = () => {
             </div>
             <div className="relative z-10">
               <img 
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=75&w=600&h=700"
+                src={heroImage}
                 width={480}
                 height={560}
                 fetchPriority="high"

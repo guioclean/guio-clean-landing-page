@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import logo from "@/assets/guioclean-logo.png";
+import logo from "@/assets/guioclean-logo.webp";
 import { useCoupon } from "@/contexts/CouponContext";
 
 type FormState = "idle" | "sending" | "success" | "error";

@@ -31,7 +31,7 @@ const WhyChooseUs = () => {
           {/* Left: Image + CTA */}
           <div className="relative">
             <img
-              src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=75&w=600&h=500"
+              src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=70&w=600&h=500"
               width={600}
               height={500}
               loading="lazy"
