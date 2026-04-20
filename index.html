@@ -33,16 +33,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Google tag (gtag.js) - Google Analytics 4 (deferred to avoid blocking LCP) -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BWLGDPETBE');
+    <!-- Google Analytics 4 - loaded async after page load to not block LCP -->
+    <script defer>
       window.addEventListener('load', function () {
         var s = document.createElement('script');
         s.async = true;
         s.src = 'https://www.googletagmanager.com/gtag/js?id=G-BWLGDPETBE';
+        s.onload = function () {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-BWLGDPETBE');
+        };
         document.head.appendChild(s);
       });
     </script>
