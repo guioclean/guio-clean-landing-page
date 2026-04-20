@@ -131,28 +131,28 @@ const TestimonialsSection = () => {
           plugins={[autoplay.current]}
           className="w-full"
         >
-          <CarouselContent className="-ml-4">
+          <CarouselContent className="-ml-4 items-start">
             {testimonials.map((t) => (
               <CarouselItem
                 key={t.id}
                 className="pl-4 md:basis-1/2 lg:basis-1/3"
               >
-                <article className="bg-card border border-border rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative">
-                  <Quote className="w-8 h-8 text-primary/15 absolute top-6 right-6" />
-                  <div className="flex items-center gap-2 mb-3">
+                <article className="bg-card border border-border rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col relative">
+                  <Quote className="w-8 h-8 text-primary/15 absolute top-5 right-5" />
+                  <div className="flex items-center gap-2 mb-2">
                     <GoogleLogo />
                     <span className="font-body text-xs text-muted-foreground font-medium">
                       Avaliação no Google
                     </span>
                   </div>
-                  <div className="mb-4">
+                  <div className="mb-3">
                     <StarRating rating={t.rating} />
                   </div>
-                  <p className="font-body text-foreground leading-relaxed flex-1 mb-8">
+                  <p className="font-body text-foreground leading-relaxed mb-5">
                     "{t.text}"
                   </p>
 
-                  <footer className="flex items-center gap-3 mt-auto pt-6 border-t border-border">
+                  <footer className="flex items-center gap-3 pt-4 border-t border-border">
                     {t.avatar_url ? (
                       <img
                         src={t.avatar_url}
