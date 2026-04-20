@@ -71,7 +71,11 @@ const HeroSection = () => {
             </div>
             <div className="relative z-10">
               <img 
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=600&h=700"
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=75&w=600&h=700"
+                width={480}
+                height={560}
+                fetchPriority="high"
+                decoding="async"
                 className="w-[480px] h-[560px] object-cover rounded-3xl shadow-2xl" 
                 alt="Diarista profissional da agência Guio Clean realizando limpeza residencial em São Paulo" 
               />

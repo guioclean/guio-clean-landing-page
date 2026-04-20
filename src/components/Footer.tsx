@@ -96,7 +96,7 @@ const ContactSection = () => {
           {/* Info */}
           <div className="flex flex-col justify-center space-y-12">
             <div>
-              <img src={logo} alt="Guio Clean" className="h-14 brightness-0 invert mb-6" />
+              <img src={logo} alt="Logo Guio Clean — Agência de diaristas em São Paulo" width={200} height={56} loading="lazy" decoding="async" className="h-14 w-auto brightness-0 invert mb-6" />
               <p className="font-body text-primary-foreground/60 text-lg leading-relaxed max-w-md">
                 Experiência Guio Clean na limpeza do seu dia a dia. Compromisso com a segurança, praticidade e tranquilidade que você merece.
               </p>

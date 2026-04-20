@@ -25,8 +25,12 @@ const Navbar = () => {
         <a href="#" className="flex items-center gap-2 transition-transform hover:scale-105 shrink-0">
           <img 
             src={scrolled ? logoColorida : logoBranca} 
-            alt="Guio Clean" 
-            className={`object-contain transition-all duration-300 drop-shadow-sm ${
+            alt="Guio Clean — Agência de diaristas em São Paulo (página inicial)"
+            width={280}
+            height={112}
+            fetchPriority="high"
+            decoding="async"
+            className={`object-contain w-auto transition-all duration-300 drop-shadow-sm ${
               scrolled ? "h-14 md:h-16 lg:h-20" : "h-20 md:h-24 lg:h-28"
             }`} 
           />
