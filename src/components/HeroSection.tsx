@@ -1,9 +1,36 @@
+import { useEffect, useState } from "react";
 import { useCoupon } from "@/contexts/CouponContext";
 import { ArrowRight, Play } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import heroImage from "@/assets/hero-cleaning.webp";
+
+const DEFAULTS: Record<string, string> = {
+  hero_stat_1_value: "5k+",
+  hero_stat_1_label: "Clientes atendidos",
+  hero_stat_2_value: "4.9",
+  hero_stat_2_label: "Avaliação média",
+  hero_stat_3_value: "98%",
+  hero_stat_3_label: "Satisfação",
+};
 
 const HeroSection = () => {
   const { getWhatsAppUrl } = useCoupon();
+  const [stats, setStats] = useState(DEFAULTS);
+
+  useEffect(() => {
+    supabase
+      .from("quote_settings")
+      .select("key, text_value")
+      .in("key", Object.keys(DEFAULTS))
+      .then(({ data }) => {
+        if (!data) return;
+        const next = { ...DEFAULTS };
+        data.forEach((row) => {
+          if (row.text_value) next[row.key] = row.text_value;
+        });
+        setStats(next);
+      });
+  }, []);
 
   return (
     <section className="relative min-h-[90vh] pt-32 pb-20 overflow-hidden bg-background flex items-center">
@@ -48,18 +75,18 @@ const HeroSection = () => {
             {/* Stats row */}
             <div className="pt-6 flex flex-wrap justify-center lg:justify-start gap-8">
               <div>
-                <p className="font-heading font-extrabold text-3xl text-foreground">5k+</p>
-                <p className="font-body text-sm text-muted-foreground">Clientes atendidos</p>
+                <p className="font-heading font-extrabold text-3xl text-foreground">{stats.hero_stat_1_value}</p>
+                <p className="font-body text-sm text-muted-foreground">{stats.hero_stat_1_label}</p>
               </div>
               <div className="w-px bg-border" />
               <div>
-                <p className="font-heading font-extrabold text-3xl text-foreground">4.9</p>
-                <p className="font-body text-sm text-muted-foreground">Avaliação média</p>
+                <p className="font-heading font-extrabold text-3xl text-foreground">{stats.hero_stat_2_value}</p>
+                <p className="font-body text-sm text-muted-foreground">{stats.hero_stat_2_label}</p>
               </div>
               <div className="w-px bg-border" />
               <div>
-                <p className="font-heading font-extrabold text-3xl text-foreground">98%</p>
-                <p className="font-body text-sm text-muted-foreground">Satisfação</p>
+                <p className="font-heading font-extrabold text-3xl text-foreground">{stats.hero_stat_3_value}</p>
+                <p className="font-body text-sm text-muted-foreground">{stats.hero_stat_3_label}</p>
               </div>
             </div>
           </div>

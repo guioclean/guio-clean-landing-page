@@ -60,20 +60,48 @@ const TestimonialsSection = () => {
   );
   const [testimonials, setTestimonials] = useState<Testimonial[]>(fallbackTestimonials);
   const [googleUrl, setGoogleUrl] = useState("https://www.google.com/search?q=Guio+Clean+S%C3%A3o+Paulo");
+  const [header, setHeader] = useState({
+    eyebrow: "Depoimentos",
+    title: "Avaliações reais no Google",
+    rating: "4,9",
+    rating_caption: "baseado em +5.000 clientes",
+    subtitle: "Veja o que dizem nossos clientes que avaliaram a Guio Clean diretamente no Google.",
+  });
 
   useEffect(() => {
     (async () => {
-      const [{ data: list }, { data: setting }] = await Promise.all([
+      const [{ data: list }, { data: settings }] = await Promise.all([
         supabase
           .from("site_testimonials")
           .select("*")
           .eq("active", true)
           .order("sort_order")
           .order("review_date", { ascending: false }),
-        supabase.from("quote_settings").select("text_value").eq("key", "google_reviews_url").maybeSingle(),
+        supabase
+          .from("quote_settings")
+          .select("key, text_value")
+          .in("key", [
+            "google_reviews_url",
+            "testimonials_eyebrow",
+            "testimonials_title",
+            "testimonials_rating",
+            "testimonials_rating_caption",
+            "testimonials_subtitle",
+          ]),
       ]);
       if (list && list.length > 0) setTestimonials(list as Testimonial[]);
-      if (setting?.text_value) setGoogleUrl(setting.text_value);
+      if (settings) {
+        const map: Record<string, string> = {};
+        settings.forEach((s) => { if (s.text_value) map[s.key] = s.text_value; });
+        if (map.google_reviews_url) setGoogleUrl(map.google_reviews_url);
+        setHeader((h) => ({
+          eyebrow: map.testimonials_eyebrow || h.eyebrow,
+          title: map.testimonials_title || h.title,
+          rating: map.testimonials_rating || h.rating,
+          rating_caption: map.testimonials_rating_caption || h.rating_caption,
+          subtitle: map.testimonials_subtitle || h.subtitle,
+        }));
+      }
     })();
   }, []);
 
@@ -109,20 +137,20 @@ const TestimonialsSection = () => {
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center mb-16">
           <span className="text-primary font-heading font-bold tracking-wider text-sm uppercase mb-3 block">
-            Depoimentos
+            {header.eyebrow}
           </span>
           <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-foreground mb-4">
-            Avaliações reais no Google
+            {header.title}
           </h2>
           <div className="flex items-center justify-center gap-2 mb-3">
             <StarRating rating={5} />
-            <span className="font-heading font-bold text-foreground">4,9</span>
+            <span className="font-heading font-bold text-foreground">{header.rating}</span>
             <span className="font-body text-muted-foreground text-sm">
-              · baseado em +5.000 clientes
+              · {header.rating_caption}
             </span>
           </div>
           <p className="font-body text-muted-foreground text-lg max-w-2xl mx-auto">
-            Veja o que dizem nossos clientes que avaliaram a Guio Clean diretamente no Google.
+            {header.subtitle}
           </p>
         </div>
 
