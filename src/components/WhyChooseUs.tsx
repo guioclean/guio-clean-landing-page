@@ -1,4 +1,5 @@
 import { ShieldCheck, CalendarCheck, Sparkles, HeartHandshake } from "lucide-react";
+import whyImage from "@/assets/why-choose.webp";
 
 const features = [
   {
@@ -31,7 +32,7 @@ const WhyChooseUs = () => {
           {/* Left: Image + CTA */}
           <div className="relative">
             <img
-              src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=70&w=600&h=500"
+              src={whyImage}
               width={600}
               height={500}
               loading="lazy"
