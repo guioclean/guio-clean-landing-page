@@ -17,13 +17,13 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-10 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "bg-card/95 backdrop-blur-md shadow-lg py-2" : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
         <a href="#" className="relative flex items-center transition-transform hover:scale-105 shrink-0" aria-label="Guio Clean — página inicial">
-          <div className={`relative transition-all duration-300 ${scrolled ? "h-14 md:h-16 lg:h-20 w-40 md:w-48 lg:w-56" : "h-20 md:h-24 lg:h-28 w-56 md:w-64 lg:w-72"}`}>
+          <div className={`relative transition-all duration-300 ${scrolled ? "h-12 md:h-14 lg:h-16 w-32 md:w-40 lg:w-44" : "h-16 md:h-20 lg:h-24 w-44 md:w-52 lg:w-60"}`}>
             <img 
               src={scrolled ? logoColorida : logoBranca} 
               alt="Guio Clean — Agência de diaristas em São Paulo (página inicial)"
@@ -32,7 +32,7 @@ const Navbar = () => {
               fetchPriority="high"
               decoding="async"
               className={`absolute left-0 top-1/2 -translate-y-1/2 object-contain object-left w-auto drop-shadow-sm transition-all duration-300 ${
-                scrolled ? "h-24 md:h-28 lg:h-32" : "h-32 md:h-40 lg:h-48"
+                scrolled ? "h-16 md:h-20 lg:h-24" : "h-24 md:h-28 lg:h-32"
               }`}
             />
           </div>
@@ -47,11 +47,9 @@ const Navbar = () => {
           href={getWhatsAppUrl()}
           target="_blank"
           rel="noopener noreferrer"
-          className={`font-heading font-bold text-sm px-7 py-3 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 hover:scale-105 transition-all duration-300 shrink-0 ${
-            scrolled ? "bg-primary text-primary-foreground shadow-primary/30" : "bg-white text-primary hover:bg-secondary"
-          }`}
+          className="font-heading font-bold text-sm px-7 py-3 rounded-full shadow-lg shadow-primary/30 hover:shadow-xl hover:-translate-y-1 hover:scale-105 transition-all duration-300 shrink-0 bg-primary text-primary-foreground hover:brightness-110"
         >
-          {scrolled ? "Solicitar Orçamento" : "Solicitar Orçamento"}
+          Solicitar Orçamento
         </a>
       </div>
     </nav>
