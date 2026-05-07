@@ -14,8 +14,8 @@ const KEYS = [
   // Testimonials header
   { key: "testimonials_eyebrow", label: "Depoimentos — Etiqueta superior", placeholder: "Depoimentos", group: "Depoimentos" },
   { key: "testimonials_title", label: "Depoimentos — Título principal", placeholder: "Avaliações reais no Google", group: "Depoimentos" },
-  { key: "testimonials_rating", label: "Depoimentos — Nota exibida", placeholder: "4,9", group: "Depoimentos" },
-  { key: "testimonials_rating_caption", label: "Depoimentos — Legenda da nota", placeholder: "baseado em +5.000 clientes", group: "Depoimentos" },
+  { key: "testimonials_rating", label: "Depoimentos — Nota exibida", placeholder: "5,0", group: "Depoimentos" },
+  { key: "testimonials_rating_caption", label: "Depoimentos — Legenda da nota", placeholder: "baseado em +1.000 clientes", group: "Depoimentos" },
   { key: "testimonials_subtitle", label: "Depoimentos — Subtítulo", placeholder: "Veja o que dizem nossos clientes...", group: "Depoimentos", textarea: true },
 ];
 
