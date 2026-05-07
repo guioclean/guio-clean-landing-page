@@ -124,7 +124,7 @@ const ContactSection = () => {
                   </a>
                   <div className="pt-2">
                     <p className="text-primary-foreground/50 text-sm">E-mail</p>
-                    <p className="font-bold">contato@guioclean.com.br</p>
+                    <a href="mailto:guioclean@gmail.com" className="font-bold hover:text-primary transition-colors">guioclean@gmail.com</a>
                   </div>
                 </div>
               </div>

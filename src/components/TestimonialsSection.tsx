@@ -63,8 +63,8 @@ const TestimonialsSection = () => {
   const [header, setHeader] = useState({
     eyebrow: "Depoimentos",
     title: "Avaliações reais no Google",
-    rating: "4,9",
-    rating_caption: "baseado em +5.000 clientes",
+    rating: "5,0",
+    rating_caption: "baseado em +1.000 clientes",
     subtitle: "Veja o que dizem nossos clientes que avaliaram a Guio Clean diretamente no Google.",
   });
 

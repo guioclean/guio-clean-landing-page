@@ -114,8 +114,8 @@ const HeroSection = () => {
                     <span className="text-lg font-bold">⭐</span>
                   </div>
                   <div>
-                    <p className="font-heading font-bold text-foreground text-sm">+5.000 Clientes</p>
-                    <p className="font-body text-xs text-muted-foreground">Avaliação 4.9/5</p>
+                    <p className="font-heading font-bold text-foreground text-sm">+1.000 Clientes</p>
+                    <p className="font-body text-xs text-muted-foreground">Avaliação 5/5</p>
                   </div>
                 </div>
               </div>
