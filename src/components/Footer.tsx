@@ -17,25 +17,12 @@ const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const FORMSPREE_ID = "YOUR_FORM_ID";
-
-    if (FORMSPREE_ID === "YOUR_FORM_ID") {
-      const text = `Olá! Meu nome é ${form.name}. Sou da região: ${form.region}. ${form.message}`;
-      window.open(getWhatsAppUrl(text), "_blank");
-      return;
-    }
-
-    setStatus("sending");
-    try {
-      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      setStatus(response.ok ? "success" : "error");
-    } catch {
-      setStatus("error");
-    }
+    const subject = encodeURIComponent(`Contato pelo site — ${form.name}`);
+    const body = encodeURIComponent(
+      `Nome: ${form.name}\nE-mail: ${form.email}\nRegião: ${form.region}\n\nMensagem:\n${form.message}`
+    );
+    window.location.href = `mailto:guioclean@gmail.com?subject=${subject}&body=${body}`;
+    setStatus("success");
   };
 
   const inputClass =
