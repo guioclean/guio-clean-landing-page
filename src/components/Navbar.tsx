@@ -22,18 +22,20 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 transition-transform hover:scale-105 shrink-0">
-          <img 
-            src={scrolled ? logoColorida : logoBranca} 
-            alt="Guio Clean — Agência de diaristas em São Paulo (página inicial)"
-            width={280}
-            height={112}
-            fetchPriority="high"
-            decoding="async"
-            className={`object-contain w-auto transition-all duration-300 drop-shadow-sm ${
-              scrolled ? "h-14 md:h-16 lg:h-20" : "h-20 md:h-24 lg:h-28"
-            }`} 
-          />
+        <a href="#" className="relative flex items-center transition-transform hover:scale-105 shrink-0" aria-label="Guio Clean — página inicial">
+          <div className={`relative transition-all duration-300 ${scrolled ? "h-14 md:h-16 lg:h-20 w-40 md:w-48 lg:w-56" : "h-20 md:h-24 lg:h-28 w-56 md:w-64 lg:w-72"}`}>
+            <img 
+              src={scrolled ? logoColorida : logoBranca} 
+              alt="Guio Clean — Agência de diaristas em São Paulo (página inicial)"
+              width={400}
+              height={160}
+              fetchPriority="high"
+              decoding="async"
+              className={`absolute left-0 top-1/2 -translate-y-1/2 object-contain object-left w-auto drop-shadow-sm transition-all duration-300 ${
+                scrolled ? "h-24 md:h-28 lg:h-32" : "h-32 md:h-40 lg:h-48"
+              }`}
+            />
+          </div>
         </a>
         <div className={`hidden md:flex items-center gap-8 font-heading font-medium text-sm transition-colors duration-300 ${scrolled ? "text-foreground" : "text-primary-foreground"}`}>
           <a href="#onde-atendemos" className={`transition-colors hover:-translate-y-0.5 duration-200 ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Onde Atendemos</a>

@@ -4,7 +4,7 @@ const SocialProofBar = () => {
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center mb-8">
           <p className="font-heading font-semibold text-foreground text-lg">
-            Mais de <span className="text-primary font-extrabold">1.000</span> clientes satisfeitos confiam na Guio Clean
+            Mais de <span className="text-primary font-extrabold">1.000</span> clientes satisfeitos confiam na <span className="text-primary font-extrabold">Guio Clean</span>
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16 opacity-70">
