@@ -1,18 +1,21 @@
+import { lazy, Suspense } from "react";
 import StickyBanner from "@/components/StickyBanner";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import SocialProofBar from "@/components/SocialProofBar";
-import WhereWeServe from "@/components/WhereWeServe";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import ServicesSection from "@/components/ServicesSection";
-import SEOContentSection from "@/components/SEOContentSection";
-import PlansSection from "@/components/PlansSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import FAQSection from "@/components/FAQSection";
-import CouponsSection from "@/components/CouponsSection";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { Helmet } from "react-helmet-async";
+
+// Below-the-fold: carregadas sob demanda para reduzir JS inicial
+const WhereWeServe = lazy(() => import("@/components/WhereWeServe"));
+const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
+const ServicesSection = lazy(() => import("@/components/ServicesSection"));
+const SEOContentSection = lazy(() => import("@/components/SEOContentSection"));
+const PlansSection = lazy(() => import("@/components/PlansSection"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const FAQSection = lazy(() => import("@/components/FAQSection"));
+const CouponsSection = lazy(() => import("@/components/CouponsSection"));
+const Footer = lazy(() => import("@/components/Footer"));
+const WhatsAppButton = lazy(() => import("@/components/WhatsAppButton"));
 
 const Index = () => {
   return (
