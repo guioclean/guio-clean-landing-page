@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCoupon } from "@/contexts/CouponContext";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Play, BadgeCheck } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import heroImage from "@/assets/hero-cleaning.webp";
 
@@ -110,12 +110,14 @@ const HeroSection = () => {
               {/* Floating card */}
               <div className="absolute -bottom-6 -left-8 bg-card rounded-2xl shadow-xl p-5 border border-border animate-fade-in">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center">
-                    <span className="text-lg font-bold">⭐</span>
+                  <div className="relative w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                    <BadgeCheck className="w-7 h-7 text-primary" strokeWidth={2.5} />
                   </div>
                   <div>
-                    <p className="font-heading font-bold text-foreground text-sm">+1.000 Clientes</p>
-                    <p className="font-body text-xs text-muted-foreground">Avaliação 5/5</p>
+                    <p className="font-heading font-bold text-foreground text-sm">Profissionais verificadas</p>
+                    <p className="font-body text-xs text-muted-foreground flex items-center gap-1">
+                      <BadgeCheck className="w-3.5 h-3.5 text-primary" /> Identidade confirmada
+                    </p>
                   </div>
                 </div>
               </div>
