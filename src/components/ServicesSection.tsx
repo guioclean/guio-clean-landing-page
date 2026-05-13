@@ -25,6 +25,18 @@ const ServicesSection = () => {
 
   if (loading || services.length === 0) return null;
 
+  // Otimiza imagens do Supabase Storage via transformação on-the-fly (cache CDN + resize)
+  const optimize = (url: string, w = 600) => {
+    if (!url) return url;
+    if (url.includes("/storage/v1/object/public/")) {
+      return url.replace("/storage/v1/object/public/", "/render/image/public/") + `?width=${w}&quality=70&resize=cover`;
+    }
+    if (url.includes("images.unsplash.com")) {
+      return url.includes("?") ? `${url}&w=${w}&q=70` : `${url}?w=${w}&q=70`;
+    }
+    return url;
+  };
+
   return (
     <section id="servicos" className="py-24 bg-secondary">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -51,7 +63,7 @@ const ServicesSection = () => {
               {/* Image */}
               <div className="h-48 overflow-hidden">
                 <img
-                  src={service.image_url}
+                  src={optimize(service.image_url, 600)}
                   alt={`Serviço de ${service.title} — Guio Clean`}
                   width={400}
                   height={192}
