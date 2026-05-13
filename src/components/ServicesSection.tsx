@@ -63,7 +63,7 @@ const ServicesSection = () => {
               {/* Image */}
               <div className="h-48 overflow-hidden">
                 <img
-                  src={service.image_url}
+                  src={optimize(service.image_url, 600)}
                   alt={`Serviço de ${service.title} — Guio Clean`}
                   width={400}
                   height={192}
