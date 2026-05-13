@@ -48,17 +48,21 @@ const Index = () => {
         <main>
           <HeroSection />
           <SocialProofBar />
-          <ServicesSection />
-          <WhyChooseUs />
-          <SEOContentSection />
-          <WhereWeServe />
-          <PlansSection />
-          <TestimonialsSection />
-          <FAQSection />
-          <CouponsSection />
+          <Suspense fallback={<div style={{ minHeight: 400 }} />}>
+            <ServicesSection />
+            <WhyChooseUs />
+            <SEOContentSection />
+            <WhereWeServe />
+            <PlansSection />
+            <TestimonialsSection />
+            <FAQSection />
+            <CouponsSection />
+          </Suspense>
         </main>
-        <Footer />
-        <WhatsAppButton />
+        <Suspense fallback={null}>
+          <Footer />
+          <WhatsAppButton />
+        </Suspense>
       </div>
     </>
   );
