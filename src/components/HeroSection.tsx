@@ -116,7 +116,7 @@ const HeroSection = () => {
                   <div>
                     <p className="font-heading font-bold text-foreground text-sm">Profissionais verificadas</p>
                     <p className="font-body text-xs text-muted-foreground flex items-center gap-1">
-                      <BadgeCheck className="w-3.5 h-3.5 text-primary" /> Identidade confirmada
+                      <BadgeCheck className="w-3.5 h-3.5 text-primary" /> 100% confiança
                     </p>
                   </div>
                 </div>
