@@ -62,7 +62,7 @@ const TestimonialsSection = () => {
   const [googleUrl, setGoogleUrl] = useState("https://www.google.com/search?q=Guio+Clean+S%C3%A3o+Paulo");
   const [header, setHeader] = useState({
     eyebrow: "Depoimentos",
-    title: "Avaliações reais no Google",
+    title: "Avaliações no Google",
     rating: "5,0",
     rating_caption: "baseado em +1.000 clientes",
     subtitle: "Veja o que dizem nossos clientes que avaliaram a Guio Clean diretamente no Google.",
