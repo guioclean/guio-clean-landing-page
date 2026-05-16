@@ -1,4 +1,4 @@
-import logoBranca from "@/assets/logo-branca.webp";
+import logoBranca from "@/assets/logo-branca.jpg";
 import logoColorida from "@/assets/logo-colorida.webp";
 import { useEffect, useState } from "react";
 import { useCoupon } from "@/contexts/CouponContext";
