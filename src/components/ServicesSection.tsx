@@ -29,7 +29,7 @@ const ServicesSection = () => {
   const optimize = (url: string, w = 600) => {
     if (!url) return url;
     if (url.includes("/storage/v1/object/public/")) {
-      return url.replace("/storage/v1/object/public/", "/render/image/public/") + `?width=${w}&quality=70&resize=cover`;
+      return url.replace("/storage/v1/object/public/", "/storage/v1/render/image/public/") + `?width=${w}&quality=70&resize=cover`;
     }
     if (url.includes("images.unsplash.com")) {
       return url.includes("?") ? `${url}&w=${w}&q=70` : `${url}?w=${w}&q=70`;
@@ -69,6 +69,10 @@ const ServicesSection = () => {
                   height={192}
                   loading="lazy"
                   decoding="async"
+                  onError={(event) => {
+                    const image = event.currentTarget;
+                    if (image.src !== service.image_url) image.src = service.image_url;
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
