@@ -64,7 +64,7 @@ const TestimonialsSection = () => {
     eyebrow: "Depoimentos",
     title: "Avaliações no Google",
     rating: "5,0",
-    rating_caption: "baseado em +1.000 clientes",
+    rating_caption: "algumas das nossas avaliações",
     subtitle: "Veja o que dizem nossos clientes que avaliaram a Guio Clean diretamente no Google.",
   });
 
@@ -146,7 +146,7 @@ const TestimonialsSection = () => {
             <StarRating rating={5} />
             <span className="font-heading font-bold text-foreground">{header.rating}</span>
             <span className="font-body text-muted-foreground text-sm">
-              · {header.rating_caption}
+              {header.rating_caption}
             </span>
           </div>
           <p className="font-body text-muted-foreground text-lg max-w-2xl mx-auto">
