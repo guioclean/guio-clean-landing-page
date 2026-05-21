@@ -45,7 +45,7 @@ const ServicesSection = () => {
           <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-foreground mb-4">
             Serviços de Limpeza Profissional
           </h2>
-          <p className="font-body text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="font-body text-muted-foreground text-lg max-w-2xl mx-auto font-thin">
             Nossa agência de diaristas oferece soluções personalizadas para atender as necessidades específicas do seu espaço.
           </p>
         </div>
