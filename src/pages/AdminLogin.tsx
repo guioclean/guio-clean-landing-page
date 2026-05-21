@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import { Lock } from "lucide-react";
 
@@ -49,6 +50,12 @@ const AdminLogin = () => {
 
   return (
     <div className="min-h-screen bg-foreground flex items-center justify-center p-6">
+      <Helmet>
+        <title>Login do Administrador | Guio Clean</title>
+        <meta name="description" content="Acesso restrito à área administrativa da Guio Clean. Faça login para gerenciar leads, cupons, serviços e conteúdo do site." />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://guio-sparkle-hub.lovable.app/admin" />
+      </Helmet>
       <div className="w-full max-w-md">
         <div className="bg-card rounded-2xl p-10 shadow-2xl border border-border">
           <div className="flex items-center justify-center mb-8">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import { LogOut, Users, Tag, Calculator, Briefcase, LayoutList, HelpCircle, MapPin, Truck, Star, FileText } from "lucide-react";
 
@@ -53,6 +54,12 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-secondary">
+      <Helmet>
+        <title>Painel Administrativo | Guio Clean</title>
+        <meta name="description" content="Painel de gestão da Guio Clean: gerencie leads, cupons, orçamentos, serviços, planos, FAQ, locais, frete e avaliações em um só lugar." />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://guio-sparkle-hub.lovable.app/admin/dashboard" />
+      </Helmet>
       <header className="bg-card border-b border-border px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <h1 className="font-heading font-extrabold text-xl text-foreground">Painel Guio Clean</h1>
