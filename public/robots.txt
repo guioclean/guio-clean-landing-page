@@ -15,4 +15,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin-login
 
-Sitemap: https://guioclean.com.br/sitemap.xml
+Sitemap: https://guio-sparkle-hub.lovable.app/sitemap.xml
