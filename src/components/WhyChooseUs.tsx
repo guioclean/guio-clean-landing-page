@@ -4,8 +4,8 @@ import whyImage from "@/assets/why-choose.webp";
 const features = [
   {
     icon: Sparkles,
-    title: "Comodidade Total",
-    description: "Cuidamos de tudo. Dos produtos ao treinamento, você não se preocupa com nada."
+    title: "Sua rotina sem preocupações",
+    description: "Garantimos profissionais qualificadas e prontas para deixar seu lar impecável e brilhando no seu ritmo."
   },
   {
     icon: CalendarCheck,
